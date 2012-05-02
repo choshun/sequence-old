@@ -1,0 +1,11 @@
+#sequencer {
+	color:#fff;
+	font-family:Arial;
+	background:url("../images/we-got-this!.jpg") no-repeat center right #000;
+}
+
+#sequencer #wrapper{
+	height:100%;
+	width:100%;
+	
+}

@@ -18,9 +18,9 @@ var SQNC = SQNC || {};
 		
 		function createTrackHTML(){
 			if(settings.asset.type === 'track'){
-				var theID = setting.id;
-				var theHTML = '<div id=""' + theID + '""></div>';
-				
+				var theID = settings.id;
+				var theHTML = '<div id="' + theID + '" class="track">this is a track</div>';
+				$sequencer.append(theHTML);
 			}
 		}
 		

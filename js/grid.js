@@ -6,6 +6,7 @@ var SQNC = SQNC || {};
 
 		var self = this;
 		
+		//types of stuff to make
 		var track = {
 			type: 'track'
 		}
@@ -14,7 +15,6 @@ var SQNC = SQNC || {};
 			makeGrid();
 		}
 		
-		//Private
 		function makeGrid(){
 			var loader = new SQNC.load({
 				id: 'track1',
@@ -22,20 +22,6 @@ var SQNC = SQNC || {};
 			});
 			
 		}
-		
-		//Public
-		this.publicMethod = function() {
-			//alert('not nested Public');
-		}
-		
-		//Nested Public
-		self.nested = (function() {
-			return {
-				publicNestedMethod: function() {
-	          		//alert('public nested');
-	        	}
-	    	};	
-		})();
 		
 		init();
 		

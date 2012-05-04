@@ -6,26 +6,38 @@ var SQNC = SQNC || {};
 
 		var self = this;
 		
-		alert('sup');
+		var track = {
+			type: 'track'
+		}
+		
+		function init(){
+			makeGrid();
+		}
 		
 		//Private
-		function doThis(){
-			alert('Public');
+		function makeGrid(){
+			var loader = new SQNC.load({
+				id: 'track1',
+				asset: track
+			});
+			
 		}
 		
 		//Public
-		self.publicMethod = function() {
-			alert('not nested Public');
+		this.publicMethod = function() {
+			//alert('not nested Public');
 		}
 		
 		//Nested Public
 		self.nested = (function() {
 			return {
 				publicNestedMethod: function() {
-	          		doThis();
+	          		//alert('public nested');
 	        	}
 	    	};	
 		})();
+		
+		init();
 		
 	}
 	

@@ -2,7 +2,7 @@ var SQNC = SQNC || {};
 
 (function($) {	
 	$(document).ready(function(){
-		var theSequence = new SQNC.grid();
+		var sequencer = new SQNC.grid();
 	});
 
 })(jQuery);

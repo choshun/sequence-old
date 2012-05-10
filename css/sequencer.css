@@ -3,7 +3,7 @@ html{height:100%}
 body{
 	color:#fff;
 	font-family:Arial;
-	background:url("../images/we-got-this!2--.jpg") no-repeat bottom right #000;
+	background:url("../images/we-got-this!2-saturated.jpg") no-repeat 130% 100% #000;
 	text-align:left;
 }
 
@@ -13,14 +13,27 @@ body{
 }
 
 #sequencer{
-	padding:50px 100px;
 	width:80%;
 
-	margin:0 auto;
+	margin:50px auto;
 }
 
 #sequencer .track{
 	border:1px solid red;
 	height:60px;
 	background-color:#941b1b;
+	position:relative;
+}
+
+#sequencer .track .trigger{
+	position:absolute;
+	left:0;
+	top:0;
+	width:10px;
+	height:100%;
+	background:#ff00ff;
+}
+
+.control-on{
+	cursor:pointer;
 }

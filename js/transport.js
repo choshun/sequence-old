@@ -12,27 +12,15 @@ var SQNC = SQNC || {};
 		  	interval = 100,
 	        time = 0,  
 	        elapsed = '.0',
-			tempo = 120;
-			
-		var aBeat = 60 / tempo;
-		var elapsedInTempo = 0;
-		
-		var testNumber = 1.1;
+			tempo = 60;
 		
 		var $sequencer = $('#sequencer');
+		var sequencerWidth = $sequencer.width();
 		
 		console.log(settings);
 		
 		init = function(){
 			keepTime();
-			//makeLoop();
-			
-			// setInterval(function(){
-			// 				convertElapsedToCursorX();
-			// 				console.log(elapsedInTempo)
-			// 			
-			// 			},500);
-			//alert('asd')
 		}
 		
 		function keepTime(){
@@ -53,27 +41,37 @@ var SQNC = SQNC || {};
 			
 			window.setTimeout(grain, (interval - diff));
 			
-			// I need to check if elapsed converted to Cursor x is greater than what's it the array,
-			// if so fire on
-			
-			convertElapsedToCursorX();
-			
-			//only for testing
-			
+			makeBeat();
 	    }
 		
-		function convertElapsedToCursorX(){
-			//one beat, then increment
-			elapsedInTempo = elapsed % aBeat;
-			console.log(elapsedInTempo);
-		}
+		var fire = 0;
+		var aBeat = 60 / tempo;
+		var elapsedInTempo = 0;
+		var aMeasure = 4;
 		
 		function makeBeat(){
-			if(tempo / (elapsed % 60) === parseInt(tempo / (elapsed % 60))){
-				console.log(elapsed);
+			elapsedInTempo = (elapsed % (aBeat * aMeasure)) ;
+			convertElapsedToCursorX();
+		}
+		
+		var count = 0;
+		var reset = 0;
+		function convertElapsedToCursorX(){
+			//console.log((((aBeat * elapsedInTempo) / aMeasure) * sequencerWidth) + '|||'+ sequencer[count]);
+			//console.log(elapsedInTempo);
+			
+			if((((aBeat * elapsedInTempo) / aMeasure) * sequencerWidth) < aMeasure){
+				reset++;
+				if(reset ===1){
+					//count++;
+
+					reset++;
+					fire = 0;
+					console.log('fire!');
+				}
+				//console.log('before');
 			}
-			//var beat = (tempo / (elapsed % 60));
-			//console.log(beat);
+			reset = 0;
 		}
 		
 		init();

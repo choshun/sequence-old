@@ -15,7 +15,7 @@ var SQNC = SQNC || {};
 			cursorX = 0,
 			cursorY = 0;
 		
-		var sequencer = new Array();
+		sequencer = new Array();
 		
 		//ASSET TYPES
 		/*

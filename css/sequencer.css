@@ -5,10 +5,10 @@ html{
 
 #background-image{
 	bottom: 0;
-	    height: 460px;
-	    position: fixed;
-	    right: -107px;
-	    z-index: -1;
+	height: 460px;
+    position: fixed;
+    right: -107px;
+    z-index: -1;
 }
 
 body{

@@ -1,3 +1,7 @@
+/* 
+***	sequencer bindings
+ */
+
 var SQNC = SQNC || {};
 
 (function($) {
@@ -14,9 +18,6 @@ var SQNC = SQNC || {};
 			sequenceWidth = $sequencer.width(),
 			cursorX = 0,
 			cursorY = 0;
-		
-		sequencer = new Array();
-		triggerKey = 0;
 		
 		//ASSET TYPES
 		/*
@@ -90,9 +91,9 @@ var SQNC = SQNC || {};
 						
 						var arrayIndex = $target.data('trigger-key');
 						
-						sequencer.splice(arrayIndex , 1);
+						SQNC.sequencer.splice(arrayIndex , 1);
 						triggerKey--;
-						console.log(sequencer);
+						console.log(SQNC.sequencer);
 						
 					} else{
 						addTrigger({
@@ -111,8 +112,8 @@ var SQNC = SQNC || {};
 			***	TODO: don't hard code trigger left offset (because of trigger div thickness)
 			 */
 			options.$target.append('<div class = "trigger" style="left:' + parseInt(cursorX - 5) + 'px" data-trigger-key="' + triggerKey + '"/>');
-			sequencer.push(cursorX);
-			console.log(sequencer);
+			SQNC.sequencer.push(cursorX);
+			console.log(SQNC.sequencer);
 			triggerKey++;
 		}
 		

@@ -1,3 +1,8 @@
+/* 
+*** this loads track assets, fired from grid.js's bindings
+	TODO: maybe nest this in SQNC.grid?
+ */
+
 var SQNC = SQNC || {};
 
 (function($) {

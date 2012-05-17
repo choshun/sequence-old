@@ -1,3 +1,10 @@
+/* 
+***	this sets the grain for time elapsed for the sequence
+*** when time elapsed is greater than the next sequencer trigger event, it fires
+*** TODO: the keeping time and ordering the sequence array should stay here, 
+***  	  but the firing should not (eventually writeOSC.js, or something to that effect)
+ */
+
 var SQNC = SQNC || {};
 
 (function($) {
@@ -61,29 +68,34 @@ var SQNC = SQNC || {};
 			//console.log(elapsedInTempo);
 			var cursorXtobeatPosition = (((aBeat * elapsedInTempo) / aMeasure) * sequencerWidth);
 			//console.log(cursorXtobeatPosition);
+			
+			/*
+			*** every measure reset, clean up sequence array
+			*/
 			if( cursorXtobeatPosition < aMeasure){
 				reset++;
-				if(reset ===1){
+				if(reset === 1){
 					//count++;
 
 					reset++;
 					fire = 0;
 					//console.log('fire!');
-					//sort sequence array
-					//reset trigger indexes to reflect order
+					//TODO: sort sequence array
+					//TODO: reset trigger indexes to reflect order (they are data attributes)
 					
-					//mod trigger index to amount of triggers
+					//TODO: mod trigger index to amount of triggers. the following works .. but probably won't
 					triggerKey = 0;
 					
 				}
 				//console.log('before');
 				
 			}
+			
 			reset = 0;
 			
 			//fire when cursorXtobeatPosition is greater than the the indexed xvalue (trigger)
-			if (cursorXtobeatPosition > sequencer[triggerKey]){
-				console.log(sequencer[triggerKey] + ' | ' + cursorXtobeatPosition);
+			if (cursorXtobeatPosition > SQNC.sequencer[triggerKey]){
+				console.log(SQNC.sequencer[triggerKey] + ' | ' + cursorXtobeatPosition);
 				//bump up to next trigger
 				triggerKey++;
 			}

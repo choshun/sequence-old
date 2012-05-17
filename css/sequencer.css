@@ -1,16 +1,24 @@
-html{height:100%}
+html{
+	height:100%;
+	position:relative;
+}
+
+#background-image{
+	bottom: 0;
+	    height: 460px;
+	    position: fixed;
+	    right: -107px;
+	    z-index: -1;
+}
 
 body{
 	color:#fff;
 	font-family:Arial;
-	background:url("../images/we-got-this!2-saturated.jpg") no-repeat 130% 100% #000;
+	/*background:url("../images/we-got-this!2-saturated.jpg") no-repeat 130% 100% #000;*/
+	background-color:#000;
 	text-align:left;
 }
 
-#sequencer #wrapper{
-
-
-}
 
 #sequencer{
 	width:80%;

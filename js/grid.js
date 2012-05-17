@@ -16,6 +16,7 @@ var SQNC = SQNC || {};
 			cursorY = 0;
 		
 		sequencer = new Array();
+		triggerKey = 0;
 		
 		//ASSET TYPES
 		/*
@@ -80,12 +81,19 @@ var SQNC = SQNC || {};
 			});
 			//click on track add a trigger signature
 			$sequencer.on('click', '.track', function(e){
-
+				
 				var $target = $(e.target)
 				
 				if(commandKeyIsOn){
 					if($target.attr('class') === 'trigger') {
 						$target.remove();
+						
+						var arrayIndex = $target.data('trigger-key');
+						
+						sequencer.splice(arrayIndex , 1);
+						triggerKey--;
+						console.log(sequencer);
+						
 					} else{
 						addTrigger({
 							velocity: 100,
@@ -98,12 +106,14 @@ var SQNC = SQNC || {};
 		
 		function addTrigger(options){
 			console.log(cursorX);
+			
 			/*
 			***	TODO: don't hard code trigger left offset (because of trigger div thickness)
 			 */
-			options.$target.append('<div class = "trigger" style="left:' + parseInt(cursorX - 5) + 'px" />');
+			options.$target.append('<div class = "trigger" style="left:' + parseInt(cursorX - 5) + 'px" data-trigger-key="' + triggerKey + '"/>');
 			sequencer.push(cursorX);
 			console.log(sequencer);
+			triggerKey++;
 		}
 		
 		init();

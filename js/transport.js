@@ -15,10 +15,13 @@ var SQNC = SQNC || {};
 		var settings = {};
 		$.extend(settings, defaults, options);
 		
+//(elapsed === 0) ? elapsed = '.0' : elapsed = elapsed)
+
 		var start = new Date().getTime(),
+		  	nextGrain = null,
 		  	interval = 25,
 	        time = 0,  
-	        elapsed = '.0',
+	        elapsed = elapsed || '.0',
 			tempo = 60;
 		
 		var $sequencer = $('#sequencer');
@@ -41,16 +44,25 @@ var SQNC = SQNC || {};
 				elapsed += '.0'; 
 			}  
 			
-	        var diff = (new Date().getTime() - start) - time;
-			
 			document.title = elapsed;  
 			//console.log(diff);  
-			
-			window.setTimeout(grain, (interval - diff));
-			
-			makeBeat();
+			//alert(SQNC.isPlaying);
+			if(SQNC.isPlaying === true){
+				
+				self.play();
+				
+			} 
 	    }
 		
+		//public method
+	    self.play = function(){
+	    	//alert('playing?');
+	    	var diff = (new Date().getTime() - start) - time;
+			window.setTimeout(grain, (interval - diff));
+			makeBeat();
+	    }
+	    //end public method
+
 		var fire = 0;
 		var aBeat = 60 / tempo;
 		var elapsedInTempo = 0;
@@ -75,7 +87,6 @@ var SQNC = SQNC || {};
 			if( cursorXtobeatPosition < aMeasure){
 				reset++;
 				if(reset === 1){
-					//count++;
 
 					reset++;
 					fire = 0;
@@ -91,7 +102,9 @@ var SQNC = SQNC || {};
 				
 			}
 			
+			
 			reset = 0;
+			
 			
 			//fire when cursorXtobeatPosition is greater than the the indexed xvalue (trigger)
 			if (cursorXtobeatPosition > SQNC.sequencer[triggerKey]){

@@ -41,8 +41,10 @@ var SQNC = SQNC || {};
 		}
 	
 		function bindWindowForTrackActions(){
+			
 			$(document).on('keydown', function(e){
 				checkCommandKeyStatus(e);
+				checkSpacebarStatus(e);
 			});
 			$(document).on('keyup', function(e){
 				destroyCommandKeyStatus(e);
@@ -63,6 +65,23 @@ var SQNC = SQNC || {};
 				commandKeyIsOn = false;
 				console.log('control off');
 				$body.removeClass('control-on');
+			}
+		}
+
+		function checkSpacebarStatus(e){
+			if (e.which === 32) {
+				
+				if(SQNC.isPlaying === true){
+					console.log('stopped');
+					SQNC.isPlaying = false;
+					$body.removeClass('playing');
+				} else {
+					console.log('playing');
+					SQNC.isPlaying = true;
+					$body.addClass('playing');
+					SQNC.play();
+				}
+				
 			}
 		}
 	

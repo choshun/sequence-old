@@ -26,37 +26,53 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>19</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>33</integer>
+				<integer>7</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>2</integer>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>1</integer>
+				<key>line</key>
+				<integer>7</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>7</integer>
+			</dict>
 		</dict>
 		<key>js/grid.js</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>3</integer>
 				<key>line</key>
-				<integer>17</integer>
+				<integer>33</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>77</integer>
+			<integer>21</integer>
 		</dict>
 		<key>js/load.js</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>12</integer>
 				<key>line</key>
-				<integer>9</integer>
+				<integer>2</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -68,9 +84,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>39</integer>
+				<integer>10</integer>
 				<key>line</key>
-				<integer>8</integer>
+				<integer>9</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -82,23 +98,23 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>3</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>42</integer>
+				<integer>8</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>44</integer>
+			<integer>0</integer>
 		</dict>
 		<key>sequence.html</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>49</integer>
+				<integer>2</integer>
 				<key>line</key>
-				<integer>17</integer>
+				<integer>22</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -109,15 +125,15 @@
 	<key>openDocuments</key>
 	<array>
 		<string>sequence.html</string>
+		<string>css/sequencer.css</string>
 		<string>js/load.js</string>
 		<string>js/transport.js</string>
-		<string>js/grid.js</string>
 		<string>js/sequencer.js</string>
-		<string>css/sequencer.css</string>
+		<string>js/grid.js</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{476, 72}, {820, 706}}</string>
+	<string>{{10, 72}, {820, 706}}</string>
 </dict>
 </plist>

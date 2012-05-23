@@ -31,10 +31,11 @@ var SQNC = SQNC || {};
 		//END ASSET TYPES
 		
 		function init(){
-			var initTrack = new SQNC.load({
+			SQNC.loader.createTrackHTML({
 				id: 'track1',
 				asset: track
 			});
+			console.log(SQNC.loader.audio);
 
 			bindWindowForTrackActions();
 			bindTrackActions();
@@ -79,7 +80,7 @@ var SQNC = SQNC || {};
 					console.log('playing');
 					SQNC.isPlaying = true;
 					$body.addClass('playing');
-					SQNC.play();
+					SQNC.transport.play();
 				}
 				
 			}
@@ -102,8 +103,13 @@ var SQNC = SQNC || {};
 			//click on track add a trigger signature
 			$sequencer.on('click', '.track', function(e){
 				
-				var $target = $(e.target)
-				
+				var $target = $(e.target),
+					$this = $(this);
+				cursorX = (window.Event) ? e.pageX : event.clientX;
+				cursorX = cursorX - $sequencer.offset().left;
+				//TODO:height offset, pass track dimensions to global vars
+				cursorY = (window.Event) ? e.pageY : event.clientY;
+
 				if(commandKeyIsOn){
 					if($target.attr('class') === 'trigger') {
 						$target.remove();
@@ -112,12 +118,14 @@ var SQNC = SQNC || {};
 						
 						SQNC.sequencer.splice(arrayIndex , 1);
 						triggerKey--;
+						SQC.triggerKeyCount--;
 						console.log(SQNC.sequencer);
 						
 					} else{
 						addTrigger({
 							velocity: 100,
-							$target: $target
+							$target: $target,
+							position: cursorX
 						});
 					}
 				}
@@ -130,10 +138,38 @@ var SQNC = SQNC || {};
 			/*
 			***	TODO: don't hard code trigger left offset (because of trigger div thickness)
 			 */
-			options.$target.append('<div class = "trigger" style="left:' + parseInt(cursorX - 5) + 'px" data-trigger-key="' + triggerKey + '"/>');
+			options.$target.append('<div class = "trigger" style="left:' + parseInt(cursorX - 5) + 'px" data-trigger-key="not yet!"/>');
 			SQNC.sequencer.push(cursorX);
 			console.log(SQNC.sequencer);
-			triggerKey++;
+			
+			var count = 0;
+			SQNC.triggerKeyCount++;
+
+			$('.trigger').each(function(e){
+				var $this = $(this);
+				var triggerIndex = $this.index('.trigger');
+				alert(triggerIndex);
+				
+				//position = $($('.trigger')[count]).offset().left - $sequencer.offset().left
+				//$this.css('left', position + 'px');
+				//alert($this.index('.trigger'));
+				$this.attr('data-trigger-key', triggerIndex);
+
+				if(count != triggerIndex){
+					console.log(count + '|||' + triggerIndex);
+				} else {
+					console.log('in order');
+				}
+
+
+				//alert($this.css('left'));
+				//SQNC.sequencer[triggerIndex] = parseInt($this.eq(triggerIndex).css('left'));
+				console.log(SQNC.sequencer);
+				count++;
+				//alert(count);
+			});
+
+			//triggerKey++;
 		}
 		
 		init();

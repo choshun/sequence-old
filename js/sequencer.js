@@ -7,18 +7,24 @@ var SQNC = SQNC || {};
 (function($) {	
 	$(document).ready(function(){
 		
-		//global variables
+		
+		/* 
+		 * global variables
+		 * */
 		SQNC.sequencer = new Array();
 		SQNC.triggerKey = 0;
+		SQNC.triggerKeyCount = 0;
 		SQNC.isPlaying = true;
 
-		var sequencer = new SQNC.grid();
-		var transport = new SQNC.transport();
-		//var listener = new SQNC.listener();
+		/* 
+		 * global objects
+		 * */
+		SQNC.loader = new SQNC.load();
+		SQNC.grid = new SQNC.grid();
+		SQNC.transport = new SQNC.transport();
+		
 
-		//global methods
-		SQNC.play = transport.play;
-
+		console.log(SQNC);
 	});
 
 })(jQuery);

@@ -14,8 +14,6 @@ var SQNC = SQNC || {};
 		var defaults = {};
 		var settings = {};
 		$.extend(settings, defaults, options);
-		
-//(elapsed === 0) ? elapsed = '.0' : elapsed = elapsed)
 
 		var start = new Date().getTime(),
 		  	nextGrain = null,
@@ -31,6 +29,7 @@ var SQNC = SQNC || {};
 		
 		init = function(){
 			keepTime();
+			SQNC.loader.audio.play();
 		}
 		
 		function keepTime(){
@@ -46,22 +45,21 @@ var SQNC = SQNC || {};
 			
 			document.title = elapsed;  
 			//console.log(diff);  
-			//alert(SQNC.isPlaying);
 			if(SQNC.isPlaying === true){
 				
-				self.play();
+				play();
 				
 			} 
 	    }
 		
-		//public method
-	    self.play = function(){
+		//public methods
+	    function play(){
 	    	//alert('playing?');
 	    	var diff = (new Date().getTime() - start) - time;
 			window.setTimeout(grain, (interval - diff));
 			makeBeat();
 	    }
-	    //end public method
+	    //end public methods
 
 		var fire = 0;
 		var aBeat = 60 / tempo;
@@ -97,6 +95,8 @@ var SQNC = SQNC || {};
 					//TODO: mod trigger index to amount of triggers. the following works .. but probably won't
 					triggerKey = 0;
 					
+					//TODO: this all sorts of doesn't work
+					//triggerKey %= SQC.triggerKeyCount;
 				}
 				//console.log('before');
 				
@@ -111,11 +111,17 @@ var SQNC = SQNC || {};
 				console.log(SQNC.sequencer[triggerKey] + ' | ' + cursorXtobeatPosition);
 				//bump up to next trigger
 				triggerKey++;
+				console.log('sequencer!:');
+				console.log(SQNC.sequencer);
 			}
 			
 		}
 		
 		init();
 		
+		return{
+			play : play
+		}
+
 	}	
 })(jQuery)

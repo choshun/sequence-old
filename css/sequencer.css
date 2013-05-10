@@ -1,47 +1,69 @@
-html{
-	height:100%;
-	position:relative;
+body, button, select {
+	color: #333;
+	font-family: 'Ovo', serif;
 }
 
-#background-image{
-	bottom: 0;
-	height: 460px;
-    position: fixed;
-    right: -107px;
-    z-index: -1;
+.wrapper {
+	padding: 20px 0 40px 0;
 }
 
-body{
-	color:#fff;
-	font-family:Arial;
-	/*background:url("../images/we-got-this!2-saturated.jpg") no-repeat 130% 100% #000;*/
-	background-color:#000;
-	text-align:left;
+h1 {
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 2px solid #999;
+}
+/*
+#chaos-wrapper{
+	float:right;
+	width:400px;
+}*/
+
+#chaos-pad {
+	height:200px;
+	width:200px;
+	background-color:#0088cc;
 }
 
-
-#sequencer{
-	width:80%;
-
-	margin:50px auto;
+#sequencer {
+	margin-bottom:20px;
 }
 
-#sequencer .track{
-	border:1px solid red;
-	height:60px;
-	background-color:#941b1b;
-	position:relative;
+#sequencer .layers {
+	width:100%; 
+	padding:0; 
+	margin:0;
 }
 
-#sequencer .track .trigger{
+#sequencer .layers .layer {
+	width:100%;  
+	border-bottom: 1px solid #999; 
+	padding:0; 
+	position:relative; 
+	list-style:none; 
+	height:40px;
+}
+
+#sequencer .layers .layer .trigger {
 	position:absolute;
-	left:0;
-	top:0;
-	width:10px;
-	height:100%;
-	background:#ff00ff;
+	height:80%; 
+	width:4px; 
+	background-color:#0088cc; 
+	margin-top:10px;
 }
 
-.control-on{
-	cursor:pointer;
+#transport input{
+	width:50px;
+	text-align: center;
 }
+
+.loading.hidden {
+	opacity:0;
+	-webkit-transition: all .5s ease-in-out; 
+}
+
+canvas {
+	margin-left: 500px;
+	border: 1px solid;
+}
+
+

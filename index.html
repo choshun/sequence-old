@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html ng-app="sequencer">
+	<body>
+		<head>
+			<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+			<link href="http://fonts.googleapis.com/css?family=Ovo" rel="stylesheet" type="text/css">
+			<link href="css/sequencer.css" rel="stylesheet" type="text/css">
+			
+		</head>
+
+		<div class="container">
+			
+			<h1>
+				Sequencer <span class="loading">sounds loading</span>
+			</h1>
+
+	    	<div ng-controller="Sequencer" id="sequencer">
+
+	      		<ul style="width:100%; padding:0; margin:0;">
+
+		      		<li ng-repeat="layer in displayTimeArrayByLayer" ng-click="addTrigger()" style="width:100%;  border-bottom: 1px solid #999; padding:0; position:relative; list-style:none; height:40px;">
+		      			
+		      			<div ng-repeat="time in displayTimeArrayByLayer[$index]" style="position:absolute; left:{{time}}%; height:80%; width:4px; background-color:#0088cc; margin-top:10px;" ng-click="removeTrigger();">
+		      				
+		      			</div>
+		      		</li>
+		      	</ul>
+	    	</div>
+
+	    	<div class="row"> 
+
+				<form ng-controller="Transport" id="transport" class="form-inline span3">
+					<label>tempo:</label> 
+					<input id="tempo" ng-change="updateTempo(); " ng-model="tempo" class="small" ng-model-instant type="text" value="60">
+				</form>
+
+				<form id="router" class="form-inline span3">
+					<div>
+						<label class="checkbox">
+							<input type="checkbox" id="reverb" value="reverb">
+							</checkbox> reverb
+						</label>
+					</div>
+					<div>
+						<label class="checkbox">
+							<input type="checkbox" id="lowpass" value="lowPass">
+							</checkbox> low pass filter
+						</label>
+					</div>
+				</form>
+
+				<div id="chaos-wrapper" class="span6">
+
+					<form id="chaos-settings" class="form-inline">
+						<div>
+							<label class="checkbox">
+								<input id="chaos-freq" type="checkbox" value="frequency"></checkbox> 
+								osc frequencies ( x is square, y is sin )
+							</label>
+						</div>
+						<div>
+							<label class="checkbox">
+								<input id="chaos-lowpass" type="checkbox" value="lowpass"></checkbox> 
+								lowpass ( x is lowpass frequency, y is lowpass lfo rate )
+							</label>
+						</div>
+					</form>
+
+					<div id="chaos-pad">
+
+					</div>
+					
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- frameworks -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+		<script src="js/angular.js"></script>
+		<script src="js/lodash.js"></script>
+
+		<!-- helper js/default json -->
+		<script src="js/audio-helpers.js"></script>
+		<!--<script src="js/spectrum.js"></script>-->
+		<script src="js/sequence.js"></script>
+		<script src="js/sequence1.js"></script>
+
+		<!-- audio api js/kick off for angular -->
+		<script src="js/audio.js"></script>
+
+		<!-- angular stuff, handles the backing models for the sequence arrays -->
+		<script src="js/service.js"></script>
+		<script src="js/sequencer.js"></script>
+		<script src="js/transport.js"></script>
+		
+	</body>
+</html>

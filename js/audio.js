@@ -8,9 +8,9 @@
 // kick off angular sequencer app
 var Sequencer = angular.module('sequencer', []);
 
-var A = A || {};
+// var A = A || {};
 
-A = function() {
+// A = function() {
     // Samples!
     var sampleArray = 
         [
@@ -70,6 +70,8 @@ A = function() {
         
     }
 
+//---------------------- BINDING WINDOW
+
     function bindWindowActions(){
         $(document).on('keydown', function(e){
             bindPlay(e);
@@ -90,6 +92,11 @@ A = function() {
         }
     }
 
+// ---------------------- END BINDING WINDOW
+
+
+// ---------------------- BUFFER STUFF, maybe be a helper?
+
     function bufferLoad() {
       	var bufferLoader = new BufferLoader(
         	 context,
@@ -106,6 +113,52 @@ A = function() {
         $('.loading').addClass('hidden');
     }
 
+// ---------------------- END BUFFER STUFF 
+
+
+// ---------------------- TRANSPORT RELATED STUFF 
+
+    /*
+        TODO: this and play should go in transport.js.
+    */
+    function checkBeat(){
+
+        contextBeat = Math.floor(context.currentTime / oneBeat);
+
+        if (theBeat < contextBeat) {
+            nextNoteTime = context.currentTime;
+            theBeat++;
+
+            isNextNote = true;
+            console.log('played');
+        }
+        
+        //console.log('new beat' + theBeat + 'context beat:' + Math.floor(context.currentTime / oneBeat));
+    }
+
+    function play() {
+        isPlaying = !isPlaying;
+        
+        if (bufferLoaded) {
+            if (isPlaying) { // start playing
+                console.log('triggerArray: ');
+                console.log(triggerArray);
+
+                //kick it off
+                scheduler(triggerArray);
+            
+            } else {
+                window.clearTimeout( timerID );
+                console.log('stop');
+            }
+        }
+    }
+
+// ---------------------- END TANSPORT RELATED STUFF 
+
+
+
+// +++++++++++++++++++++++++++++++ The meat, so so buggy, lookahead and next notifier
     function scheduleNote( time, bufferSound ) {
         playAsset( time, bufferSound );
     }
@@ -148,44 +201,6 @@ A = function() {
         nextNoteCount++;
     }
 
-    /*
-        TODO: this and play should go in transport.js.
-    */
-    function checkBeat(){
-
-        contextBeat = Math.floor(context.currentTime / oneBeat);
-
-        if (theBeat < contextBeat) {
-            nextNoteTime = context.currentTime;
-            theBeat++;
-
-            isNextNote = true;
-            console.log('played');
-        }
-        
-        //console.log('new beat' + theBeat + 'context beat:' + Math.floor(context.currentTime / oneBeat));
-    }
-
-    function play() {
-        isPlaying = !isPlaying;
-        
-        if (bufferLoaded) {
-            if (isPlaying) { // start playing
-                console.log('triggerArray: ');
-                console.log(triggerArray);
-
-                //kick it off
-                scheduler(triggerArray);
-            
-            } else {
-                window.clearTimeout( timerID );
-                console.log('stop');
-            }
-        }
-
-        
-    }
-
     function scheduler(triggerArray, bufferSound) {
         
         checkBeat();
@@ -210,12 +225,33 @@ A = function() {
 
     }
 
+// +++++++++++++++++++++++++++++++ END clusterfuck
+
+// ------ normal audio stuff
+
     function playAsset( time, asset) {
         if (typeof asset !== 'undefined') {
             playSample(time, asset);
         } else {
             playOsc( time );
         }
+    }
+
+    function playSample( time, asset ) {
+        var source = context.createBufferSource();
+        source.buffer = asset;
+
+        bufferList[0].gain = 1.5; // make the bass drum louder
+        console.log('index:' + index);
+
+        /** SAMPLE COMPRESSOR **/
+        sampleCompressor = context.createDynamicsCompressor();
+        sampleCompressor.ratio.value = 30;
+        sampleCompressor.threshold.value = 500;
+        source.connect(sampleCompressor);
+        sampleCompressor.connect(context.destination);
+
+        source.start(time);
     }
 
     /** TODO: Pretty sure the effects don't need **/
@@ -452,31 +488,14 @@ A = function() {
         lowPass.connect(lowPass.frequency);
     }
 
-    function playSample( time, asset ) {
-        var source = context.createBufferSource();
-        source.buffer = asset;
-
-        bufferList[0].gain = 1.5; // make the bass drum louder
-        console.log('index:' + index);
-
-        /** SAMPLE COMPRESSOR **/
-        sampleCompressor = context.createDynamicsCompressor();
-        sampleCompressor.ratio.value = 30;
-        sampleCompressor.threshold.value = 500;
-        source.connect(sampleCompressor);
-        sampleCompressor.connect(context.destination);
-
-        source.start(time);
-    }
-
     init();
 
-    return {
-        triggerArray: triggerArray
-    }
+//     return {
+//         triggerArray: triggerArray
+//     }
 
     
-}
+// }
 
-var A = new A();
+// var A = new A();
 

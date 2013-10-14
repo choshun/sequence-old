@@ -1,6 +1,6 @@
 Sequencer.controller( 'Sequencer', [ 'SequencerService', '$scope', function( SequencerService, $scope ) {
     
-    var triggerArray = A.triggerArray;
+    //var triggerArray = A.triggerArray;
 
     $scope.tempo = SequencerService.tempo;
 

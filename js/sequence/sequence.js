@@ -11,6 +11,10 @@ var sequenced = [
         layer: 4,
         time: 0
     },
+    {
+        layer: 3,
+        time: 1.9
+    },
 
     {
         layer: 4,
@@ -31,7 +35,7 @@ var sequenced = [
     },
     {
         layer: 0,
-        time: 1.1
+        time: 1
     },
     {
         layer: 0,
@@ -47,8 +51,8 @@ var sequenced = [
         time: .23
     },
     {
-        layer: 3,
-        time: 1.1
+        layer: 2,
+        time: 1
     },
     {
         layer: 2,

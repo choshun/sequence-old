@@ -9,7 +9,7 @@
 var sequenced = [
     {
         layer: 4,
-        time: 0
+        time: 0 // in beats
     },
     {
         layer: 3,
@@ -20,6 +20,20 @@ var sequenced = [
         layer: 4,
         time: .5
     },
+
+
+    // {
+    //     layer: 4,
+    //     time: .5
+    //     data: {
+    //         velocity
+    //         freq
+    //         sample
+    //         type
+    //     }
+    // },
+
+
     {
         layer: 4,
         time: 1.5

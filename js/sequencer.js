@@ -1,6 +1,8 @@
+// ALL THIS SHOULD DO IS PREP THE OBJECT FOR THE SCHEDULER, NO display, no adding/chaning ui
+
 Sequencer.controller( 'Sequencer', [ 'SequencerService', '$scope', function( SequencerService, $scope ) {
     
-    //var triggerArray = A.triggerArray;
+    var triggerArray = A.triggerArray;
 
     $scope.tempo = SequencerService.tempo;
 

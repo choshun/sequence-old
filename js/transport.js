@@ -1,3 +1,5 @@
+// THIS SHOULD HANDLE TEMPO, START STOP, MEASURE, Looping ETC.
+
 Sequencer.controller( 'Transport', [ 'SequencerService', '$scope', function( SequencerService, $scope ) {
     $scope.tempo = SequencerService.tempo;
     $scope.start = 0;

@@ -1,16 +1,46 @@
+// ALL THIS SHOULD DO IS PLAY/handle audio objects, break out scheduler
+
+
 /*
 *** ONLY WORKS FOR CHROME
 ***
 *** Unquantized sequencer using angular for sequence states
-*** There's totally a chaos pad zomg (it wasn't until after a while my friend pointed out it's kaos. no regrets)
+*** //Break out into a controler thingy shouldn't be here....There's totally a chaos pad zomg (it wasn't until after a while my friend pointed out it's kaos. no regrets)
  */
 
 // kick off angular sequencer app
 var Sequencer = angular.module('sequencer', []);
 
-// var A = A || {};
+var A = A || {};
 
-// A = function() {
+var SEQUENCE = {
+    0.0: {
+        audio: {
+            sample: 'crash',
+            velocity: 0.5
+        },
+        audio1: {
+            sample: 'crash',
+            velocity: 0.5
+        }
+    },
+    0.25: {
+        audio: {
+            sample: 'crash',
+            velocity: 0.5
+        },
+        audio1: {
+            sample: 'crash',
+            velocity: 0.5
+        }
+    }
+
+};
+
+console.log(SEQUENCE);
+
+
+A = function() {
     // Samples!
     var sampleArray = 
         [
@@ -167,7 +197,9 @@ var Sequencer = angular.module('sequencer', []);
     //      ie it fires at the right time, but the time it's using to set next time is not always correct
     //      I believe this has to do with the beat resetting.
     function nextNote(array, index) {
-        
+
+        //ALL THIS FUNCTION DOES IS FIND THE NEXT NOTETIME
+
         console.log(index);
 
         //if (theSequence === 1) {
@@ -181,7 +213,7 @@ var Sequencer = angular.module('sequencer', []);
         //}
 
         if (triggerArray.length > 1){
-            
+            // RESTART BEAT
             if (nextNoteCount === triggerArray.length || singleBeat){
                 newBeat = false;
 
@@ -205,16 +237,19 @@ var Sequencer = angular.module('sequencer', []);
         
         checkBeat();
         
+        // SHOULD TAKE OUT NEXT NOTE, LOOPING SHOULD ALL BE DONE IS TRANSPORT
+        // NEED THIS AS SIMPLE AND QUIZK AS POSSIBLE
         while (nextNoteTime < context.currentTime + scheduleAheadTime && isNextNote === true) {
             
             index = index % triggerArray.length;
             scheduleNote( nextNoteTime, bufferList[triggerArray[index].layer] );
             
             console.log('NEXT NOTE TIME: ' + nextNoteTime);
-            nextNote(triggerArray[index].nextNoteTime, index);
-            
-            index++;   
 
+            // SETS NEXT NOTE TIME, might add to the bug, might need to make nextNoteTime nextNoteTime()
+            nextNote(triggerArray[index].nextNoteTime, index);
+            // NOTE: THIS IS BAD, SHOULD FLATTEN IT OUT.. it is :(
+            index++;   
         }
         
         theBeat = Math.floor(context.currentTime / oneBeat); 
@@ -490,12 +525,12 @@ var Sequencer = angular.module('sequencer', []);
 
     init();
 
-//     return {
-//         triggerArray: triggerArray
-//     }
+    return {
+        triggerArray: triggerArray
+    }
 
     
-// }
+}
 
-// var A = new A();
+var A = new A();
 

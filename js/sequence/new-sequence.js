@@ -21,6 +21,70 @@ var SEQUENCE = [
                     "sample": 0,
                     "velocity": 0.5
                 }
+            }
+        ]
+    },
+    {
+        "time": 0.25,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 1,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.5,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 2,
+                    "velocity": 0.5
+                }
+            },
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.75,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 1,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+];
+
+
+var SEQUENCE1 = [
+    {
+        "time": 0,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
             },
             {
                 "layer": 2,
@@ -48,6 +112,136 @@ var SEQUENCE = [
                 "type": "audio",
                 "params": {
                     "sample": 0,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.11,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.12,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.13,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.14,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 2,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.15,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.16,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 1,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.17,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.18,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 2,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.19,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.195,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 3,
                     "velocity": 0.5
                 }
             }
@@ -200,7 +394,7 @@ var SEQUENCE = [
 
 
     {
-        "time": 1,
+        "time": .9,
         "events": [
             {
                 "layer": 2,
@@ -219,47 +413,193 @@ var SEQUENCE = [
                 }
             }
         ]
-    },
-    {
-        "time": 2,
-        "events": [
-            {
-                "layer": 1,
-                "type": "audio",
-                "params": {
-                    "sample": 0,
-                    "velocity": 0.5
-                }
-            },
-            {
-                "layer": 2,
-                "type": "audio",
-                "params": {
-                    "sample": 1,
-                    "velocity": 0.5
-                }
-            }
-        ]
-    },
-    {
-        "time": 3,
-        "events": [
-            {
-                "layer": 1,
-                "type": "audio",
-                "params": {
-                    "sample": 0,
-                    "velocity": 0.5
-                }
-            },
-            {
-                "layer": 2,
-                "type": "osc",
-                "params": {
-                    "pitch": 1,
-                    "velocity": 0.5
-                }
-            }
-        ]
     }
+    // ,
+    // {
+    //     "time": 2,
+    //     "events": [
+    //         {
+    //             "layer": 1,
+    //             "type": "audio",
+    //             "params": {
+    //                 "sample": 0,
+    //                 "velocity": 0.5
+    //             }
+    //         }
+    //         // ,
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 1,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 0,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // },
+    //         // {
+    //         //     "layer": 2,
+    //         //     "type": "audio",
+    //         //     "params": {
+    //         //         "sample": 1,
+    //         //         "velocity": 0.5
+    //         //     }
+    //         // }
+    //     ]
+    // },
+    // {
+    //     "time": 3,
+    //     "events": [
+    //         {
+    //             "layer": 1,
+    //             "type": "audio",
+    //             "params": {
+    //                 "sample": 0,
+    //                 "velocity": 0.5
+    //             }
+    //         },
+    //         {
+    //             "layer": 2,
+    //             "type": "osc",
+    //             "params": {
+    //                 "pitch": 1,
+    //                 "velocity": 0.5
+    //             }
+    //         }
+    //     ]
+    // }
 ];

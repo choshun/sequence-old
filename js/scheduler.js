@@ -22,17 +22,21 @@ var addedTime = 0;
 
 var currentBeat = 1;
 
+//ghettoooo
+var loopIndex = 0;
+
 function scheduler(sequence) {
 
     while (eventTime < context.currentTime + scheduleAheadTime) {
 
         if (sequence[index] !== undefined) {
             trigger = sequence[index];
-            eventTime = trigger.time;
+            eventTime = trigger.time + loopIndex;
 
             for (eventKey in trigger.events) {
                 if (trigger.events[eventKey].type === 'audio') {
                     scheduleEvent(eventTime, bufferList[trigger.events[eventKey].params.sample]);
+                    console.log(index, eventTime);
                 } else {
                     playOsc(eventTime);
                 }
@@ -45,16 +49,16 @@ function scheduler(sequence) {
             // // NEW:
             // // INSTEAD of having next not/check beat etc, just have the unchanged sequence, then a prepped cropped version that loops if needed
 
-            // TODO: have a loop that loops through each event
-            
             index++;
 
             //console.log('next event:', sequence[index]);
             // super ghetto way to make it loop
         } else {
             console.log('next event:', eventTime);
-            clearTimeout(timerID);
-            return;
+            index = 0;
+            loopIndex++;
+            //clearTimeout(timerID);
+            //return;
         }
     }
 

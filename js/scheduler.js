@@ -12,15 +12,33 @@ var isNextNote = true;
 var index = 0;
 var nextNoteTime = 0;
 
+// new
+
+var trigger = {},
+    time = 0,
+    type = '',
+    eventKey = '';
+
 function scheduler(sequence) {
     if (sequence[index] !== undefined) {
+
         while (nextNoteTime < context.currentTime + scheduleAheadTime) {
+            trigger = sequence[index];
+            time = trigger.time;
+
+            for (eventKey in trigger.events) {
+                if (trigger.events[eventKey].type === 'audio') {
+                    scheduleEvent(time, bufferList[trigger.events[eventKey].params.sample]);
+                } else {
+                    playOsc(time);
+                }
+                
+            }
 
             // // NEW:
             // // INSTEAD of having next not/check beat etc, just have the unchanged sequence, then a prepped cropped version that loops if needed
-            nextNoteTime = sequence[index].time;
 
-            scheduleNote(nextNoteTime, bufferList[1]);
+            // TODO: have a loop that loops through each event
 
             index++;
         }
@@ -36,7 +54,7 @@ function scheduler(sequence) {
 }
 
 
-function scheduleNote( time, bufferSound ) {
+function scheduleEvent(time, bufferSound) {
     playSample( time, bufferSound );
 }
 

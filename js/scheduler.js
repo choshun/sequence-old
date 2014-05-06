@@ -10,93 +10,61 @@ var singleBeat = false;
 var isNextNote = true;
 
 var index = 0;
-var nextNoteTime = 0;
+var eventTime = 0 + context.currentTime;
 
 // new
 
 var trigger = {},
-    time = 0,
     type = '',
     eventKey = '';
 
-function scheduler(sequence) {
-    if (sequence[index] !== undefined) {
+var addedTime = 0;
 
-        while (nextNoteTime < context.currentTime + scheduleAheadTime) {
+var currentBeat = 1;
+
+function scheduler(sequence) {
+
+    while (eventTime < context.currentTime + scheduleAheadTime) {
+
+        if (sequence[index] !== undefined) {
             trigger = sequence[index];
-            time = trigger.time;
+            eventTime = trigger.time;
 
             for (eventKey in trigger.events) {
                 if (trigger.events[eventKey].type === 'audio') {
-                    scheduleEvent(time, bufferList[trigger.events[eventKey].params.sample]);
+                    scheduleEvent(eventTime, bufferList[trigger.events[eventKey].params.sample]);
                 } else {
-                    playOsc(time);
+                    playOsc(eventTime);
                 }
-                
+
+                //console.log(eventKey);
             }
+            
+            
 
             // // NEW:
             // // INSTEAD of having next not/check beat etc, just have the unchanged sequence, then a prepped cropped version that loops if needed
 
             // TODO: have a loop that loops through each event
-
+            
             index++;
+
+            //console.log('next event:', sequence[index]);
+            // super ghetto way to make it loop
+        } else {
+            console.log('next event:', eventTime);
+            clearTimeout(timerID);
+            return;
         }
     }
-    
-    //theBeat = Math.floor(context.currentTime / oneBeat); 
 
     timerID = window.setTimeout( function() {
         scheduler(SEQUENCE);
-         //console.log('NEXT NOTE TIME: ' + context.currentTime);
     } , lookahead);
-
 }
-
 
 function scheduleEvent(time, bufferSound) {
     playSample( time, bufferSound );
 }
 
-//TODO: next note is not accurate per sequence/this is a mess.
-//      ie it fires at the right time, but the time it's using to set next time is not always correct
-//      I believe this has to do with the beat resetting.
-// function nextNote(array, index) {
-
-//     //ALL THIS FUNCTION DOES IS FIND THE NEXT NOTETIME
-
-//     console.log(index);
-
-//     //if (theSequence === 1) {
-
-//         if (index + 1 === triggerArray.length){
-//             index = 0;
-//         }
-//         nextNoteTime += triggerArray[index + 1].nextNoteTime;
-//     //} else {
-//     //    nextNoteTime += triggerArray[index].nextNoteTime;
-//     //}
-
-//     if (triggerArray.length > 1){
-//         // RESTART BEAT
-//         if (nextNoteCount === triggerArray.length || singleBeat){
-//             newBeat = false;
-
-//             isNextNote = false;
-//             console.log('I should stop!');
-//             nextNoteCount = 0;
-
-//         } else {
-//             nextNoteCount = nextNoteCount % triggerArray.length;
-//         }
-
-//     } else {
-//         nextNoteCount = 0;
-//         singleBeat = true;
-//     }
-
-//     nextNoteCount++;
-// }
-
-//scheduler(SEQUENCE);
 

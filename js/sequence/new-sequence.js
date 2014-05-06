@@ -12,7 +12,7 @@ var DEFAULT_OSC = {
 
 var SEQUENCE = [
     {
-        "time": 0.00,
+        "time": 0,
         "events": [
             {
                 "layer": 1,
@@ -32,17 +32,77 @@ var SEQUENCE = [
             },
             {
                 "layer": 2,
-                "type": "audio",
+                "type": "osc",
                 "params": {
                     "sample": 2,
                     "velocity": 0.5
                 }
+            }
+        ]
+    },
+    {
+        "time": 0.1,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.2,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
             },
             {
-                "layer": 2,
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 1,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.3,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.4,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
+            },
+            {
+                "layer": 1,
                 "type": "osc",
                 "params": {
-                    "pitch": 1,
+                    "sample": 1,
                     "velocity": 0.5
                 }
             }
@@ -55,15 +115,41 @@ var SEQUENCE = [
                 "layer": 1,
                 "type": "audio",
                 "params": {
-                    "sample": 3,
+                    "sample": 0,
                     "velocity": 0.5
                 }
             },
             {
-                "layer": 2,
+                "layer": 1,
                 "type": "audio",
                 "params": {
-                    "sample": 2,
+                    "sample": 1,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.6,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.7,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
                     "velocity": 0.5
                 }
             }
@@ -81,6 +167,71 @@ var SEQUENCE = [
                 }
             },
             {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 1,
+                    "velocity": 0.5
+                }
+            },
+            {
+                "layer": 1,
+                "type": "osc",
+                "params": {
+                    "sample": 1,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 0.9,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+
+
+    {
+        "time": 1,
+        "events": [
+            {
+                "layer": 2,
+                "type": "osc",
+                "params": {
+                    "pitch": 1,
+                    "velocity": 0.5
+                }
+            },
+            {
+                "layer": 2,
+                "type": "audio",
+                "params": {
+                    "sample": 2,
+                    "velocity": 0.5
+                }
+            }
+        ]
+    },
+    {
+        "time": 2,
+        "events": [
+            {
+                "layer": 1,
+                "type": "audio",
+                "params": {
+                    "sample": 0,
+                    "velocity": 0.5
+                }
+            },
+            {
                 "layer": 2,
                 "type": "audio",
                 "params": {
@@ -91,13 +242,21 @@ var SEQUENCE = [
         ]
     },
     {
-        "time": 0.99,
+        "time": 3,
         "events": [
             {
                 "layer": 1,
                 "type": "audio",
                 "params": {
                     "sample": 0,
+                    "velocity": 0.5
+                }
+            },
+            {
+                "layer": 2,
+                "type": "osc",
+                "params": {
+                    "pitch": 1,
                     "velocity": 0.5
                 }
             }

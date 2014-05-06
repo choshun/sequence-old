@@ -70,6 +70,7 @@ function createSquareOsc( time ) {
     square.gain = .5;
     square.type = 1;
     square.noteOn( time );
+    console.log('asdasdasd',context.currentTime, time);
     square.noteOff( time + noteLength );
 }
 
@@ -152,7 +153,7 @@ function configureConnections() {
     square.connect( gain );
     sin.connect( gain );
 
-    console.log('routeArray.length'+routeArray.length);
+    //console.log('routeArray.length'+routeArray.length);
 
     if (routeArray.length === 0) {
         gain.connect( oscCompressor );

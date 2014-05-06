@@ -36,7 +36,7 @@ function playSample(time, asset) {
     source.connect(sampleCompressor);
     sampleCompressor.connect(context.destination);
 
-    console.log(source);
+    // console.log(source);
     source.start(time);
 }
 

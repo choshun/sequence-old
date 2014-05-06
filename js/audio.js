@@ -13,31 +13,79 @@ var Sequencer = angular.module('sequencer', []);
 
 var A = A || {};
 
-var SEQUENCE = {
-    0.0: {
-        audio: {
-            sample: 'crash',
-            velocity: 0.5
-        },
-        audio1: {
-            sample: 'crash',
-            velocity: 0.5
-        }
-    },
-    0.25: {
-        audio: {
-            sample: 'crash',
-            velocity: 0.5
-        },
-        audio1: {
-            sample: 'crash',
-            velocity: 0.5
-        }
-    }
-
+var DEFAULT_AUDIO = {
+    "sample": "snare",
+    "velocity": 0.5
 };
 
-console.log(SEQUENCE);
+var DEFAULT_OSC = {
+    "pitch": "1600",
+    "velocity": 0.5
+};
+
+var SEQUENCE = {
+    "0.0": [
+        {
+            "type": "audio",
+            "params": {
+                "sample": "snare",
+                "velocity": 0.5
+            }
+        },
+        {
+            "type": "osc",
+            "params": {
+                "pitch": "1600",
+                "velocity": 0.5
+            }
+        }
+    ],
+    "0.25": [
+        {
+            "type": "audio",
+            "params": {
+                "sample": "snare",
+                "velocity": 0.5
+            }
+        }
+    ],
+    "0.75": [
+        {
+            "type": "audio",
+            "params": {
+                "sample": "snare",
+                "velocity": 0.5
+            }
+        }
+    ]
+};
+
+
+// var SEQUENCE = {
+//     0.0: {
+//         audio: {
+//             sample: 'crash',
+//             velocity: 0.5
+//         },
+//         audio1: {
+//             sample: 'crash',
+//             velocity: 0.5
+//         }
+//     },
+//     0.25: {
+//         audio: {
+//             sample: 'crash',
+//             velocity: 0.5
+//         },
+//         audio1: {
+//             sample: 'crash',
+//             velocity: 0.5
+//         }
+//     }
+
+// };
+
+// console.log(SEQUENCE);
 
 
 A = function() {
@@ -172,7 +220,7 @@ A = function() {
         if (bufferLoaded) {
             if (isPlaying) { // start playing
                 console.log('triggerArray: ');
-                console.log(triggerArray);
+                console.log('TEST', triggerArray);
 
                 //kick it off
                 scheduler(triggerArray);

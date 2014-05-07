@@ -1,10 +1,21 @@
 Sequencer.service( 'SequencerService', [ '$rootScope', function( $rootScope ) {
     return {
         tempo: 60,
-        bars: 1,
-        maintainTempo : function( item ) {
+        measures: 1,
+        measureLength: 1,
+        maintainTempo: function(item) {
             this.tempo = item;
-            $rootScope.$broadcast( 'SequencerService.update', this.tempo );
-        }  
+            //$rootScope.$broadcast( 'SequencerService.update', this.tempo );
+            this.computeMeasureTime(this.tempo);
+        },
+        maintainMeasureLength: function(item) {
+            this.measures = item;
+            //$rootScope.$broadcast( 'SequencerService.update', this.measures );
+            this.computeMeasureTime(this.tempo);
+        },
+        computeMeasureTime: function(tempo) {
+			this.measureLength = 60 / this.tempo;
+			console.log('MULTIPLIER', this.measureLength);
+        }
     };
 }]);

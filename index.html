@@ -32,10 +32,16 @@
 
 	    		<!-- TRANSPORT -->
 				<form ng-controller="Transport" id="transport" class="form-inline span3">
-					<label>tempo:</label> 
+					<fieldset>
+						<label>tempo:</label> 
 					
-					asd<input measure class="small" id="fuck-me" type="number" />asd
-					<input id="tempo" ng-change="updateTempo(); " ng-model="tempo" class="small" ng-model-instant type="text" value="60">
+						<input measure="burger and fries" class="small" id="tempo" ng-model="tempo" ng-change="updateTempo();" type="number" />
+					</fieldset>
+					
+					<fieldset>
+						<label>measures:</label> 
+						<input id="mesaures" ng-change="updateMeasureLength();" ng-model="measures" class="small" type="number" value="1">
+					</fieldset>
 				</form>
 				<!-- END TRANSPORT -->
 

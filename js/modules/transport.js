@@ -24,17 +24,29 @@
 
 Sequencer.controller( 'Transport', [ 'SequencerService', '$scope', function(SequencerService, $scope) {
     $scope.tempo = SequencerService.tempo;
+    $scope.measures = SequencerService.measures;
 
+    $scope.updateTempo = function() {
+        SequencerService.maintainTempo($scope.tempo);
+    };
+
+    $scope.updateMeasureLength = function() {
+        SequencerService.maintainMeasureLength($scope.measures);
+    };
 }]);
 
 
-Sequencer.directive('measure', function() {
+Sequencer.directive('measure', function(SequencerService) {
     return {
         restrict: 'A',
         link: function(scope, elm, attrs) {
+            console.log(scope);
+            document.addEventListener('keyup', function(event) {
+                console.log(event.which);
+            });
 
             elm.bind('change keyup', function() {
-                console.log('yay');
+                alert(SequencerService.tempo);
             });
 
         }

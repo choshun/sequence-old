@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html ng-aasdpp="sequencer">
+<html ng-app="sequencer">
 	<body>
 		<head>
 			<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -30,10 +30,14 @@
 
 	    	<div class="row"> 
 
+	    		<!-- TRANSPORT -->
 				<form ng-controller="Transport" id="transport" class="form-inline span3">
 					<label>tempo:</label> 
+					
+					asd<input measure class="small" id="fuck-me" type="number" />asd
 					<input id="tempo" ng-change="updateTempo(); " ng-model="tempo" class="small" ng-model-instant type="text" value="60">
 				</form>
+				<!-- END TRANSPORT -->
 
 				<form id="router" class="form-inline span3">
 					<div>
@@ -67,9 +71,9 @@
 						</div>
 					</form>
 
-					<div id="chaos-pad">
+					<!-- <div id="chaos-pad">
 
-					</div>
+					</div> -->
 					
 				</div>
 
@@ -81,7 +85,7 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 		<script src="js/libs/angular.js"></script>
 		<!-- SHOULD NOT USE LODASH -->
-		 <script src="js/libs/lodash.js"></script> 
+		 <!-- <script src="js/libs/lodash.js"></script> -->
 
 		<!-- helper js/default json -->
 		<script src="js/helpers/audio-context.js"></script>
@@ -100,9 +104,11 @@
 		<script src="js/scheduler.js"></script>
 
 		<!-- angular stuff, handles the backing models for the sequence arrays -->
-		<!-- <script src="js/service.js"></script>
 		<script src="js/sequencer.js"></script>
-		<script src="js/transport.js"></script>-->
+		<script src="js/service.js"></script>
+		
+		<script src="js/modules/transport.js"></script>
+		<!--<script src="js/transport.js"></script>-->
 		
 	</body>
 </html>

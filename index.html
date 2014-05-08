@@ -35,13 +35,15 @@
 					<fieldset>
 						<label>tempo:</label> 
 					
-						<input measure="burger and fries" class="small" id="tempo" ng-model="tempo" ng-change="updateTempo();" type="number" />
+						<input class="small" id="tempo" ng-model="tempo" ng-change="updateTempo();" type="number" />
 					</fieldset>
 					
 					<fieldset>
 						<label>measures:</label> 
 						<input id="mesaures" ng-change="updateMeasureLength();" ng-model="measures" class="small" type="number" value="1">
 					</fieldset>
+
+					<input type="checkbox" play="playing" />
 				</form>
 				<!-- END TRANSPORT -->
 

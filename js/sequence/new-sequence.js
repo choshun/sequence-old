@@ -131,7 +131,7 @@ var SEQUENCE1 = [
         ]
     },
     {
-        "time": 0.12,
+        "time": 0.1 ,
         "events": [
             {
                 "layer": 1,

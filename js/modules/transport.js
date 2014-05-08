@@ -1,27 +1,3 @@
-// THIS SHOULD HANDLE TEMPO, START STOP, MEASURE, Looping ETC.
-
-// Sequencer.controller( 'Transport', [ 'SequencerService', '$scope', function( SequencerService, $scope ) {
-//     $scope.tempo = SequencerService.tempo;
-//     $scope.start = 0;
-//     $scope.end = 10;
-
-//     /** $scope.length is not used yet **/
-//     $scope.computeLength = function(){
-//         $scope.length = ($scope.end - $scope.start) * (60 / $scope.tempo);
-//     }
-
-//     $scope.updateTempo = function() {
-//         SequencerService.maintainTempo( $scope.tempo );  
-//         $('#sequencer-tempo').trigger('change');
-//     };
-
-//     $scope.$on( 'SequencerService.update', function( event, tempo ) {
-//         $scope.tempo = tempo;
-//     });
-
-//     $scope.computeLength();
-// }])
-
 Sequencer.controller( 'Transport', [ 'SequencerService', '$scope', function(SequencerService, $scope) {
     $scope.tempo = SequencerService.tempo;
     $scope.measures = SequencerService.measures;
@@ -36,13 +12,20 @@ Sequencer.controller( 'Transport', [ 'SequencerService', '$scope', function(Sequ
 }]);
 
 
-Sequencer.directive('measure', function(SequencerService) {
+Sequencer.directive('play', function(SequencerService) {
     return {
         restrict: 'A',
         link: function(scope, elm, attrs) {
-            console.log(scope);
+            var playing = false;
+
             document.addEventListener('keyup', function(event) {
-                console.log(event.which);
+                playing = !playing;
+
+                if (event.which === 32) {
+                    time = context.currentTime;
+                    console.log('TIME FROM TRANSPORT', time);
+                    playing ? scheduler(SEQUENCE) : pause();
+                }
             });
 
             elm.bind('change keyup', function() {

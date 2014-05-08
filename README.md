@@ -7,7 +7,7 @@ To change it go into var SEQUENCER and change stuff (in/sequence/new-sequence).
 
 ## /sequence
 
-raw json of time signatures, and things to do
+raw json of time signatures, and things to do. Time is in fraction of 1 measure, so .25 at 60bpm is .25 secs
 
 ```javascript
 var SEQUENCE = [

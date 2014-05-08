@@ -9,7 +9,6 @@ var index = 0;
 var eventTime = 0;
 
 // new
-
 var trigger = {},
     type = '',
     eventKey = '';

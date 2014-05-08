@@ -19,19 +19,20 @@ Sequencer.directive('play', function(SequencerService) {
             var playing = false;
 
             document.addEventListener('keyup', function(event) {
-                playing = !playing;
-
                 if (event.which === 32) {
-                    time = context.currentTime;
-                    console.log('TIME FROM TRANSPORT', time);
-                    playing ? scheduler(SEQUENCE) : pause();
+                    play();
                 }
             });
 
-            elm.bind('change keyup', function() {
-                alert(SequencerService.tempo);
+            elm.on('change', function() {
+                play();
             });
 
+            function play() {
+                playing = !playing;
+                time = context.currentTime;
+                playing ? scheduler(SEQUENCE) : pause();
+            }
         }
     };
 });

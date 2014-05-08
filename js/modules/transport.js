@@ -9,8 +9,11 @@ Sequencer.controller( 'Transport', [ 'SequencerService', '$scope', function(Sequ
     $scope.updateMeasureLength = function() {
         SequencerService.maintainMeasureLength($scope.measures);
     };
-}]);
 
+    $scope.$on('measureTime.update', function(event, length) {
+        measureLength = length; // in scheduler
+    });
+}]);
 
 Sequencer.directive('play', function(SequencerService) {
     return {

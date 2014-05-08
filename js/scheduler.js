@@ -1,3 +1,4 @@
+//http://www.html5rocks.com/en/tutorials/audio/scheduling/
 
 // Scheduling vars
 var isPlaying = false;
@@ -22,9 +23,13 @@ var loopIndex = 0;
 var time = 0;
 var pauseTime = 0;
 
+var measureLength = 1;
+
 function scheduler(sequence) {
     // console.log('CURRENT TIME', context.currentTime);
     // console.log('TIME', time);
+
+    //loopIndex = measureLength;
 
     while (eventTime < context.currentTime + scheduleAheadTime) {
 
@@ -49,7 +54,8 @@ function scheduler(sequence) {
         } else {
             //console.log('next event:', eventTime);
             index = 0;
-            loopIndex++;
+            loopIndex += measureLength;
+            console.log('NEW MEASURE', measureLength);
         }
     }
 

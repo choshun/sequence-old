@@ -10,7 +10,7 @@ var DEFAULT_OSC = {
 
 // try to not have layer cause it's not a part of the sequence
 
-var SEQUENCE1 = [
+var SEQUENCE = [
     {
         "time": 0,
         "events": [
@@ -74,7 +74,7 @@ var SEQUENCE1 = [
 ];
 
 
-var SEQUENCE = [
+var SEQUENCE1 = [
     {
         "time": 0,
         "events": [

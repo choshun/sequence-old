@@ -33,7 +33,7 @@ Sequencer.directive('play', function(SequencerService) {
 
             function play() {
                 playing = !playing;
-                time = context.currentTime;
+                time = context.currentTime; // in scheduler
                 playing ? scheduler(SEQUENCE) : pause();
             }
         }

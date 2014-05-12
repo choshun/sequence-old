@@ -24,8 +24,9 @@ var time = 0;
 var pauseTime = 0;
 
 var measureLength = 1;
+var scheduleSequence = {};
 
-function scheduler(sequence) {
+function scheduler() {
     // console.log('CURRENT TIME', context.currentTime);
     // console.log('TIME', time);
 
@@ -33,8 +34,8 @@ function scheduler(sequence) {
 
     while (eventTime < context.currentTime + scheduleAheadTime) {
 
-        if (sequence[index] !== undefined) {
-            trigger = sequence[index];
+        if (scheduleSequence[index] !== undefined) {
+            trigger = scheduleSequence[index];
             eventTime = trigger.time + loopIndex + time;
 
             // TODO: make this seperate where you just pass in the callback object
@@ -48,7 +49,7 @@ function scheduler(sequence) {
             }
 
             // // NEW:
-            // // INSTEAD of having next not/check beat etc, just have the unchanged sequence, then a prepped cropped version that loops if needed
+            // // INSTEAD of having next not/check beat etc, just have the unchanged scheduleSequence, then a prepped cropped version that loops if needed
 
             index++;
         } else {
@@ -60,7 +61,7 @@ function scheduler(sequence) {
     }
 
     timerID = window.setTimeout(function() {
-        scheduler(SEQUENCE);
+        scheduler(scheduleSequence);
     }, lookahead);
 }
 

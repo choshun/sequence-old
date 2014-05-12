@@ -1,4 +1,4 @@
-// Manages start, stop, tempo, and measures
+// Handles display and manipulation of original SEQUENCE which informs the rest of the app
 
 Sequencer.controller( 'Grid', [ 'SequencerService', '$scope', function(SequencerService, $scope) {
     $scope.sequence = SEQUENCE;
@@ -13,12 +13,14 @@ Sequencer.controller( 'Grid', [ 'SequencerService', '$scope', function(Sequencer
     };
 
     $scope.createLayers = function() {
+        var events = {};
 
         for (var timeKey in $scope.sequence) {
-            var events = $scope.sequence[timeKey].events;
+            var thisEvent = {};
+            events = $scope.sequence[timeKey].events;
 
             for (var eventKey in events) {
-                var thisEvent = events[eventKey];
+                thisEvent = events[eventKey];
 
                 if ($scope.layerObject[thisEvent.params.sample] === undefined) {
                     $scope.layerObject[thisEvent.params.sample] = [];
@@ -32,30 +34,16 @@ Sequencer.controller( 'Grid', [ 'SequencerService', '$scope', function(Sequencer
     };
 
     init();
-    
+
 }]);
 
-Sequencer.directive('add', function(SequencerService) {
+Sequencer.directive('addTrigger', function(SequencerService) {
     return {
         restrict: 'A',
         link: function(scope, elm, attrs) {
-            // var playing = false;
-
-            // document.addEventListener('keyup', function(event) {
-            //     if (event.which === 32) {
-            //         play();
-            //     }
-            // });
-
-            // elm.on('change', function() {
-            //     play();
-            // });
-
-            // function play() {
-            //     playing = !playing;
-            //     time = context.currentTime; // in scheduler
-            //     playing ? scheduler(SEQUENCE) : pause();
-            // }
+            elm.on('click', function() {
+                alert('heeeeeey buddy');
+            });
         }
     };
 });

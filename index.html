@@ -18,10 +18,11 @@
 	    	<div ng-controller="Sequencer" id="sequencer">
 	    		<div class="row"> 
 
+	    		<!-- GRID -->
 	    		<section ng-controller="Grid" id="grid">
 		      		<ul style="width:100%; padding:0; margin:0;">
 
-			      		<li ng-repeat="layer in layerObject" ng-click="addTrigger()" style="width:100%;  border-bottom: 1px solid #999; padding:0; position:relative; list-style:none; height:40px;">
+			      		<li ng-repeat="layer in layerObject" add-trigger style="width:100%;  border-bottom: 1px solid #999; padding:0; position:relative; list-style:none; height:40px;">
 			      			
 			      			<div ng-repeat="time in layerObject[$index]" style="position:absolute; left:{{time * 100}}%; height:80%; width:4px; background-color:#0088cc; margin-top:10px;" ng-click="removeTrigger();">
 			      				
@@ -29,6 +30,7 @@
 			      		</li>
 			      	</ul>
 	    		</section>
+	    		<!-- END GRID -->
 
 		    	<div class="row"> 
 

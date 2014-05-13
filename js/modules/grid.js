@@ -44,32 +44,34 @@ Sequencer.directive('add', function(SequencerService) {
             var time = 0;
 
             elm.on('click', function(event) {
-                time = (event.pageX - elm.position().left) / elm.width();
+                if (event.target.classList[0] !== 'trigger') {
+                    time = (event.pageX - elm.position().left) / elm.width();
 
-                console.log('target!:', event.target);
-
-                SEQUENCE.push({
-                    "time": time,
-                    "events": [
-                        {
-                            "layer": 1,
-                            "type": "audio",
-                            "params": {
-                                "sample": attrs.add,
-                                "velocity": 0.5
+                    // TODO: should prolly be in controller
+                    SEQUENCE.push({
+                        "time": time,
+                        "events": [
+                            {
+                                "layer": 1,
+                                "type": "audio",
+                                "params": {
+                                    "sample": attrs.add,
+                                    "velocity": 0.5
+                                }
                             }
-                        }
-                    ]
-                });
+                        ]
+                    });
 
-                scope.layerObject[attrs.add].push(
-                    time
-                );
+                    scope.layerObject[attrs.add].push(
+                        time
+                    );
+                    
+                    // anything that changes scheduled sequence should go in sequence.js
+                    scheduleSequence = SEQUENCE;
+                    console.log('NEW LAYER OBJECT', scope.layerObject);
 
-                scheduleSequence = SEQUENCE;
-                console.log('NEW LAYER OBJECT', scope.layerObject);
-
-                scope.$apply();
+                    scope.$apply();
+                }
             });
         }
     };
@@ -80,9 +82,24 @@ Sequencer.directive('remove', function(SequencerService) {
         restrict: 'A',
         link: function(scope, elm, attrs) {
             elm.on('click', function() {
-                alert('remove yo');
+                var layer = elm.parent().attr('add'),
+                    trigger = attrs.remove;
+                
+                //should be in a controller
+                scope.layerObject[layer].splice(
+                    trigger, 1
+                );
+
+                // anything that changes scheduled sequence should go in sequence.js
+                SEQUENCE.forEach(function(item, index) {
+                    if (item.time === attrs.timeId - 0) {
+                        SEQUENCE.splice(index, 1);
+                        scheduleSequence = SEQUENCE;
+
+                        return;
+                    }
+                });
             });
-            
         }
     };
 });

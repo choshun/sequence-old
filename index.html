@@ -24,7 +24,7 @@
 
 			      		<li ng-repeat="layer in layerObject" add="{{$index}}" style="width:100%;  border-bottom: 1px solid #999; padding:0; position:relative; list-style:none; height:40px;">
 			      			
-			      			<div ng-repeat="time in layerObject[$index]" remove="{{index}}" style="position:absolute; left:{{time * 100}}%; height:80%; width:4px; background-color:#0088cc; margin-top:10px;" ng-click="removeTrigger();">{{time * 100}}
+			      			<div ng-repeat="time in layerObject[$index]" time-id="{{time}}" class="trigger" remove="{{$index}}" style="position:absolute; left:{{time * 100}}%; height:80%; width:4px; background-color:#0088cc; margin-top:10px;" ng-click="removeTrigger();">{{time * 100}}
 			      				
 			      			</div>
 			      		</li>

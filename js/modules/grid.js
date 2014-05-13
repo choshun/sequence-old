@@ -12,6 +12,10 @@ Sequencer.controller( 'Grid', [ 'SequencerService', '$scope', function(Sequencer
         $scope.sequence = SEQUENCE; // for when it refreshes at some point (measure selected changes etc)
     };
 
+    $scope.updateSequence = function() {
+        SequencerService.updateSequence();
+    };
+
     $scope.createLayers = function() {
         var events = {};
 
@@ -65,7 +69,7 @@ Sequencer.directive('add', function(SequencerService) {
                     scope.layerObject[attrs.add].push(
                         time
                     );
-                    
+
                     // anything that changes scheduled sequence should go in sequence.js
                     scheduleSequence = SEQUENCE;
                     console.log('NEW LAYER OBJECT', scope.layerObject);

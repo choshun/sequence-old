@@ -8,10 +8,15 @@ Sequencer.controller('Sequencer', ['SequencerService', '$scope', function(Sequen
     // cloning SEQUENCE object so changes to $scope.sequence won't effect SEQUENCE
     $scope.sequence = JSON.parse(JSON.stringify(SEQUENCE));
     scheduleSequence = $scope.sequence;
-    
+
     $scope.$on('measureTime.update', function(event, length) {
+        $scope.sequence = JSON.parse(JSON.stringify(SEQUENCE));
         $scope.updateTempo();
     });
+
+    // $scope.$on('sequence.update', function(event) {
+    //     $scope.sequence = JSON.parse(JSON.stringify(SEQUENCE));
+    // });
 
     $scope.updateTempo = function() {
         $scope.sequence.forEach(function(event, index) {
@@ -20,6 +25,8 @@ Sequencer.controller('Sequencer', ['SequencerService', '$scope', function(Sequen
 
         scheduleSequence = $scope.sequence;
     };
+
+
 
     // var triggerArray = A.triggerArray;
 

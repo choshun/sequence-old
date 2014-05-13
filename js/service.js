@@ -17,7 +17,10 @@ Sequencer.service('SequencerService', ['$rootScope', function($rootScope) {
 			console.log('MULTIPLIER', this.measureLength);
         },
         updateSequence: function() {
-			$rootScope.$broadcast('sequence.update');
+			SEQUENCE.sort(function(a, b) {
+				return a.time - b.time;
+			});
+			//$rootScope.$broadcast('sequence.update');
         }
     };
 }]);

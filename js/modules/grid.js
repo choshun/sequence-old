@@ -71,6 +71,8 @@ Sequencer.directive('add', function(SequencerService) {
                     );
 
                     // anything that changes scheduled sequence should go in sequence.js
+                    scope.updateSequence();
+
                     scheduleSequence = SEQUENCE;
                     console.log('NEW LAYER OBJECT', scope.layerObject);
 

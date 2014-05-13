@@ -2,7 +2,7 @@
 
 Sequencer.controller( 'Grid', [ 'SequencerService', '$scope', function(SequencerService, $scope) {
     $scope.sequence = SEQUENCE;
-    $scope.layerObject = {};
+    $scope.layerObject = [];
 
     function init() {
         $scope.createLayers();
@@ -37,13 +37,52 @@ Sequencer.controller( 'Grid', [ 'SequencerService', '$scope', function(Sequencer
 
 }]);
 
-Sequencer.directive('addTrigger', function(SequencerService) {
+Sequencer.directive('add', function(SequencerService) {
+    return {
+        restrict: 'A',
+        link: function(scope, elm, attrs) {
+            var time = 0;
+
+            elm.on('click', function(event) {
+                time = (event.pageX - elm.position().left) / elm.width();
+
+                console.log('target!:', event.target);
+
+                SEQUENCE.push({
+                    "time": time,
+                    "events": [
+                        {
+                            "layer": 1,
+                            "type": "audio",
+                            "params": {
+                                "sample": attrs.add,
+                                "velocity": 0.5
+                            }
+                        }
+                    ]
+                });
+
+                scope.layerObject[attrs.add].push(
+                    time
+                );
+
+                scheduleSequence = SEQUENCE;
+                console.log('NEW LAYER OBJECT', scope.layerObject);
+
+                scope.$apply();
+            });
+        }
+    };
+});
+
+Sequencer.directive('remove', function(SequencerService) {
     return {
         restrict: 'A',
         link: function(scope, elm, attrs) {
             elm.on('click', function() {
-                alert('heeeeeey buddy');
+                alert('remove yo');
             });
+            
         }
     };
 });

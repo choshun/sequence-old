@@ -103,16 +103,13 @@ Sequencer.directive('remove', function(SequencerService) {
                 );
 
                 // anything that changes scheduled sequence should go in sequence.js
-                SEQUENCE.forEach(function(item, index) {
+                SEQUENCE.some(function(item, index) {
                     if (item.time === attrs.timeId - 0) {
                         SEQUENCE.splice(index, 1);
                         scheduleSequence = SEQUENCE;
 
-
-
-                        return false;
+                        return item.time === attrs.timeId - 0;
                     }
-                    console.log(index);
                 });
 
                 localStorage.setItem('SEQUENCE', JSON.stringify(SEQUENCE));

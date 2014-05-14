@@ -3,9 +3,9 @@ Angular project bootstrapped with the app name Sequencer. Wes pointed out it's m
 To change it go into var SEQUENCER and change stuff (in/sequence/new-sequence).
 
 
-# Project structure
+## Project structure
 
-## /sequence
+#### /sequence
 
 raw json of time signatures, and things to do. Time is in fraction of 1 measure, so .25 at 60bpm is .25 secs
 
@@ -28,38 +28,38 @@ var SEQUENCE = [
 ```
 
 TODO: 
-model it more closely to midi, or oss
+model it more closely to midi, or osc
 
-## root
+#### root
 
-### scheduler.js
+###### scheduler.js
 what fires sounds, based on [this](http://www.html5rocks.com/en/tutorials/audio/scheduling/)
 
-### sequencer.js
+###### sequencer.js
 handles of prepping object to scheduler.js
 
-### service.js
+###### service.js
 rootScope that everything shares (tempo, measures, etc)
 
-## /modules
+#### /modules
 Directives that work as an intermediary between DOM manipulation and the sequence object
 
-### transport.js
+###### transport.js
 play, pause, tempo, measure
 
-### grid.js, not done yet
+###### grid.js, not done yet
 adding, removing signatures, assigning callbacks per layer
 
-### router.js, not done yet
+###### router.js, not done yet
 node routing for audio stuff, ie source -> destination configuration
 
-### automation.js, not done yet
+###### automation.js, not done yet
 visual automation of callback paramaters over time.
 
-##/asset handling
+####/asset handling
 
 will be what handles/defines callbacks, right now it's just osc and samples
 
 
-# To use
+## To use
 Change the sequence in new-sequence.js, go into scheduler, do stuff... sorry wes :(

@@ -47,7 +47,7 @@ Directives that work as an intermediary between DOM manipulation and the sequenc
 ###### transport.js
 play, pause, tempo, measure
 
-###### grid.js, not done yet
+###### grid.js
 adding, removing signatures, assigning callbacks per layer
 
 ###### router.js, not done yet

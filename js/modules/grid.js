@@ -47,6 +47,7 @@ Sequencer.directive('add', function(SequencerService) {
         link: function(scope, elm, attrs) {
             var time = 0;
 
+            //not dry
             SEQUENCE = JSON.parse(localStorage.getItem("SEQUENCE")) || SEQUENCE;
 
             elm.on('click', function(event) {
@@ -93,6 +94,9 @@ Sequencer.directive('remove', function(SequencerService) {
                 var layer = elm.parent().attr('add'),
                     trigger = attrs.remove;
                 
+                // doesn't work/not dry
+                //SEQUENCE = JSON.parse(localStorage.getItem("SEQUENCE")) || SEQUENCE;
+
                 //should be in a controller
                 scope.layerObject[layer].splice(
                     trigger, 1
@@ -104,9 +108,14 @@ Sequencer.directive('remove', function(SequencerService) {
                         SEQUENCE.splice(index, 1);
                         scheduleSequence = SEQUENCE;
 
-                        return;
+
+
+                        return false;
                     }
+                    console.log(index);
                 });
+
+                localStorage.setItem('SEQUENCE', JSON.stringify(SEQUENCE));
             });
         }
     };

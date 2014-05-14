@@ -1,7 +1,7 @@
 // Handles display and manipulation of original SEQUENCE which informs the rest of the app
 
 Sequencer.controller( 'Grid', [ 'SequencerService', '$scope', function(SequencerService, $scope) {
-    $scope.sequence = SEQUENCE;
+    $scope.sequence = JSON.parse(localStorage.getItem("SEQUENCE")) || SEQUENCE;
     $scope.layerObject = [];
 
     function init() {
@@ -47,11 +47,13 @@ Sequencer.directive('add', function(SequencerService) {
         link: function(scope, elm, attrs) {
             var time = 0;
 
+            SEQUENCE = JSON.parse(localStorage.getItem("SEQUENCE")) || SEQUENCE;
+
             elm.on('click', function(event) {
                 if (event.target.classList[0] !== 'trigger') {
                     time = (event.pageX - elm.position().left) / elm.width();
 
-                    // TODO: should prolly be in controller
+                    // TODO: should prolly be in controller with base object
                     SEQUENCE.push({
                         "time": time,
                         "events": [

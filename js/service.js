@@ -20,6 +20,12 @@ Sequencer.service('SequencerService', ['$rootScope', function($rootScope) {
 			SEQUENCE.sort(function(a, b) {
 				return a.time - b.time;
 			});
+			localStorage.setItem('SEQUENCE', JSON.stringify(SEQUENCE));
+			
+			
+			SEQUENCE = JSON.parse(localStorage.getItem("SEQUENCE"));
+
+
 			//$rootScope.$broadcast('sequence.update');
         }
     };

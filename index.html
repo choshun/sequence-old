@@ -8,7 +8,11 @@
 			<link href="css/sequencer.css" rel="stylesheet" type="text/css">
 			
 		</head>
-
+CANVAS
+		<div id="canvas-wrapper" style=" width: 90%; height: 300px; margin: 0; border: 10px solid red; clear: both; float: left;">
+	    		<canvas id="canvas" ></canvas>
+	    		/CANVAS
+	    </div>
 		<div class="container">
 			
 			<!-- <h1>
@@ -55,19 +59,19 @@
 					<form id="router" class="form-inline span3">
 						<div>
 							<label class="checkbox">
-								<input type="checkbox" id="reverb" value="reverb">
-								</checkbox> reverb
+								<input type="checkbox" id="reverb" value="reverb" />
+								reverb
 							</label>
 						</div>
 						<div>
 							<label class="checkbox">
-								<input type="checkbox" id="lowpass" value="lowPass">
-								</checkbox> low pass filter
+								<input type="checkbox" id="lowpass" value="lowPass" />
+								 low pass filter
 							</label>
 						</div>
 					</form>
 
-					<!-- <div id="chaos-wrapper" class="span6">
+					<div id="chaos-wrapper" class="span6">
 
 						<form id="chaos-settings" class="form-inline">
 							<div>
@@ -88,7 +92,7 @@
 
 						</div> 
 						
-					</div>-->
+					</div>
 				</div>
 			</div>
 
@@ -123,7 +127,6 @@
 
 		<script src="js/modules/transport.js"></script>
 		<script src="js/modules/grid.js"></script>
-		<!--<script src="js/transport.js"></script>-->
 		
 	</body>
 </html>

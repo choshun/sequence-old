@@ -21,6 +21,14 @@ var SEQUENCE = [
                     "sample": 0,
                     "velocity": 0.5
                 }
+            },
+            {
+                "layer": 1,
+                "type": "osc",
+                "params": {
+                    "sample": 3,
+                    "velocity": 0.5
+                }
             }
         ]
     },
@@ -70,7 +78,7 @@ var SEQUENCE = [
                 }
             }
         ]
-    },
+    }
 ];
 
 

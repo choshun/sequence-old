@@ -62,4 +62,4 @@ will be what handles/defines callbacks, right now it's just osc and samples
 
 
 ## To use
-Change the sequence in new-sequence.js, go into scheduler, do stuff... sorry wes :(
+click the thing with the thing

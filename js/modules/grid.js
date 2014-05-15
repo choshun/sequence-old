@@ -1,11 +1,35 @@
 // Handles display and manipulation of original SEQUENCE which informs the rest of the app
 
 Sequencer.controller( 'Grid', [ 'SequencerService', '$scope', function(SequencerService, $scope) {
-    $scope.sequence = JSON.parse(localStorage.getItem("SEQUENCE")) || SEQUENCE;
+    //$scope.sequence = JSON.parse(localStorage.getItem("SEQUENCE")) || SEQUENCE;
+    $scope.sequence = SEQUENCE;
     $scope.layerObject = [];
 
     function init() {
         $scope.createLayers();
+        canvasTest();
+    }
+
+    function canvasTest() {
+        var canvas = document.getElementById('canvas'),
+            canvasContext = canvas.getContext('2d');
+
+        var wrapper = getComputedStyle(document.getElementById('canvas-wrapper'));
+
+        var height = parseInt(wrapper.getPropertyValue('height')),
+            width = parseInt(wrapper.getPropertyValue('width'));
+
+        console.log(height, width);
+
+        canvas.width = width;
+        canvas.height = height;
+
+        canvasContext.beginPath();
+        canvasContext.moveTo(0, 50);
+        canvasContext.lineTo(width, 50);
+        canvasContext.moveTo(50, 0);
+        canvasContext.lineTo(50, height);
+        canvasContext.stroke();
     }
 
     $scope.showGrid = function() {
@@ -108,7 +132,7 @@ Sequencer.directive('remove', function(SequencerService) {
                         SEQUENCE.splice(index, 1);
                         scheduleSequence = SEQUENCE;
 
-                        return item.time === attrs.timeId - 0;
+                        //return item.time === attrs.timeId - 0;
                     }
                 });
 

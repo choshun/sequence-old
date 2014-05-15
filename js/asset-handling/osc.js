@@ -1,7 +1,7 @@
 var routeArray = new Array();
 
 // Once everything is kicked off, vars for the things being triggered
-var noteLength = .3;
+var noteLength = .8;
 var LFOArray;
 var gain, reverb, lowPass, square, sin;
 
@@ -13,6 +13,12 @@ var cursorX, cursorY;
 var lowPassIsOn = false,
     freqIsOn = false;
 
+        createLFOArray();
+        //initSpectrumBox();
+        bindRouter();
+        checkChaosSettings();
+        chaosPad();
+
 /** TODO: Pretty sure the effects don't need **/
 function playOsc( time ) {
 
@@ -21,7 +27,7 @@ function playOsc( time ) {
     setOscLowPassFilter();
     setOscCompressor();
 
-    createSquareOsc( time )
+    createSquareOsc( time );
     createSinOsc( time );
 
     configureConnections();
@@ -31,7 +37,7 @@ function playOsc( time ) {
 /** PLUGINS **/
 function setOscGain() {
     gain = context.createGainNode();
-    gain.gain.value = .2;
+    gain.gain.value = 0.2;
 }
 
 function setOscReverb() {
@@ -47,6 +53,8 @@ function setOscLowPassFilter() {
     lowPass = context.createBiquadFilter();
     lowPass.type = 0; // Low-pass filter. See BiquadFilterNode docs
     //lowPass.frequency.value = 1000; // Vanilla set cutoff to static 1000 HZ
+
+    console.log('LFOARRAY', LFOArray);
     lowPass.frequency.setValueCurveAtTime(LFOArray, context.currentTime, noteLength);
     lowPass.Q.value = 10; // filter resonance
 
@@ -104,7 +112,7 @@ function chaosPad() {
         cursorX = Math.floor($padWidth / section * cursorX) * .1 * 2.5 + .1;
         cursorY = Math.floor($padWidth / section * cursorY) * .1 * 5 + .1;
 
-        console.log('CURSOR Y' + cursorY);
+        //console.log('CURSOR Y' + cursorY);
 
         createLFOArray();
 
@@ -131,7 +139,7 @@ function bindRouter() {
     var $routerOptions = $('#router').find('input');
 
     $routerOptions.click(function(e){
-        routeArray = new Array();
+        routeArray = [];
 
         $routerOptions.each(function(){
             var $this = $(this);
@@ -160,7 +168,7 @@ function configureConnections() {
     } else {
 
         var i=0;
-
+console.log(routeArray);
         if (routeArray[i] === 'reverb') {
             gain.connect( reverb );
             if (routeArray[i + 1] === undefined) {
@@ -169,6 +177,7 @@ function configureConnections() {
             } else {
                 reverb.connect(lowPass);
                 lowPass.connect(oscCompressor);
+                alert('lowpass?');
             }
             i++;
         } 

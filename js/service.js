@@ -1,6 +1,6 @@
 Sequencer.service('SequencerService', ['$rootScope', function($rootScope) {
     return {
-        tempo: 60,
+        tempo: 120,
         measures: 1,
         measureLength: 1,
         maintainTempo: function(item) {
@@ -12,7 +12,7 @@ Sequencer.service('SequencerService', ['$rootScope', function($rootScope) {
             this.computeMeasureTime(this.tempo);
         },
         computeMeasureTime: function(tempo) {
-			this.measureLength = 60 / this.tempo;
+			this.measureLength = 30 / this.tempo;
 			$rootScope.$broadcast('measureTime.update', this.measureLength);
 			console.log('MULTIPLIER', this.measureLength);
         },

@@ -6,7 +6,8 @@ var Sequencer = angular.module('sequencer', []);
 Sequencer.controller('Sequencer', ['SequencerService', '$scope', function(SequencerService, $scope) {
 
     // cloning SEQUENCE object so changes to $scope.sequence won't effect SEQUENCE
-    $scope.sequence = JSON.parse(localStorage.getItem("SEQUENCE")) || JSON.parse(JSON.stringify(SEQUENCE));
+    //$scope.sequence = JSON.parse(localStorage.getItem("SEQUENCE")) || JSON.parse(JSON.stringify(SEQUENCE));
+    $scope.sequence = JSON.parse(JSON.stringify(SEQUENCE));
     scheduleSequence = $scope.sequence;
 
     $scope.$on('measureTime.update', function(event, length) {

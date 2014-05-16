@@ -1,5 +1,12 @@
 // Handles display and manipulation of original SEQUENCE which informs the rest of the app
 
+window.requestAnimFrame = (function(callback) {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+    function(callback) {
+        window.setTimeout(callback, 1000 / 60);
+    };
+})();
+
 Sequencer.controller( 'Grid', [ 'SequencerService', '$scope', function(SequencerService, $scope) {
     //$scope.sequence = JSON.parse(localStorage.getItem("SEQUENCE")) || SEQUENCE;
     $scope.sequence = SEQUENCE;
@@ -9,17 +16,19 @@ Sequencer.controller( 'Grid', [ 'SequencerService', '$scope', function(Sequencer
         $scope.createLayers();
         canvasTest();
     }
-
-    function canvasTest() {
-        var canvas = document.getElementById('canvas'),
+var canvas = document.getElementById('canvas'),
             canvasContext = canvas.getContext('2d');
+    function canvasTest() {
+        
 
         var wrapper = getComputedStyle(document.getElementById('canvas-wrapper'));
 
         var height = parseInt(wrapper.getPropertyValue('height')),
             width = parseInt(wrapper.getPropertyValue('width'));
 
-        console.log(height, width);
+        //console.log(height, width);
+
+        //console.log(LFOArray);
 
         canvas.width = width;
         canvas.height = height;
@@ -30,6 +39,61 @@ Sequencer.controller( 'Grid', [ 'SequencerService', '$scope', function(Sequencer
         canvasContext.moveTo(50, 0);
         canvasContext.lineTo(50, height);
         canvasContext.stroke();
+
+        var myRectangle = {
+            x: 0,
+            y: 75,
+            width: 100,
+            height: 50,
+            borderWidth: 5
+          };
+
+        drawRectangle(myRectangle, canvasContext);
+        animate(myRectangle, canvas, canvasContext, context.currentTime);
+    }
+
+    function drawRectangle(myRectangle, context) {
+        context.beginPath();
+        context.rect(myRectangle.x, myRectangle.y, myRectangle.width, myRectangle.height);
+        context.fillStyle = 'red';
+        context.fill();
+        context.lineWidth = myRectangle.borderWidth;
+        context.strokeStyle = 'black';
+        context.stroke();
+    }
+var thetime = 0,
+    index = 0
+    function animate(myRectangle, canvas, context, startTime) {
+        // update
+
+
+        thetime += 10;
+        if (LFOArray[index] !== undefined) {
+            index += 10;
+        } else {
+            index = 0;
+
+            //alert('restart')
+        }
+        
+        //console.log('draw');
+        var linearSpeed = 100;
+        // pixels / second
+        var newX = linearSpeed * LFOArray[index] / 1000;
+console.log(newX);
+        //if(newX < canvas.width - myRectangle.width - myRectangle.borderWidth / 2) {
+          myRectangle.x = newX;
+        //}
+
+        // clear
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawRectangle(myRectangle, canvasContext);
+
+        // request new frame
+        requestAnimFrame(function() {
+          animate(myRectangle, canvas, canvasContext, context.currentTime);
+        });
     }
 
     $scope.showGrid = function() {

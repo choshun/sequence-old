@@ -54,7 +54,7 @@ function setOscLowPassFilter() {
     lowPass.type = 0; // Low-pass filter. See BiquadFilterNode docs
     //lowPass.frequency.value = 1000; // Vanilla set cutoff to static 1000 HZ
 
-    console.log('LFOARRAY', LFOArray);
+    //console.log('LFOARRAY', LFOArray);
     lowPass.frequency.setValueCurveAtTime(LFOArray, context.currentTime, noteLength);
     lowPass.Q.value = 10; // filter resonance
 
@@ -78,7 +78,7 @@ function createSquareOsc( time ) {
     square.gain = .5;
     square.type = 1;
     square.noteOn( time );
-    console.log('asdasdasd',context.currentTime, time);
+    //console.log('asdasdasd',context.currentTime, time);
     square.noteOff( time + noteLength );
 }
 
@@ -129,7 +129,7 @@ function checkChaosSettings() {
         lowPassIsOn = ($lowpass.prop('checked') === true) ? true : false;
         freqIsOn = ($freq.prop('checked') === true) ? true : false;
 
-        console.log('lowpass is on: ' + lowPassIsOn + ', freq is on:' + freqIsOn);
+        //console.log('lowpass is on: ' + lowPassIsOn + ', freq is on:' + freqIsOn);
     });
 }
 
@@ -168,7 +168,7 @@ function configureConnections() {
     } else {
 
         var i=0;
-console.log(routeArray);
+
         if (routeArray[i] === 'reverb') {
             gain.connect( reverb );
             if (routeArray[i + 1] === undefined) {
@@ -177,7 +177,6 @@ console.log(routeArray);
             } else {
                 reverb.connect(lowPass);
                 lowPass.connect(oscCompressor);
-                alert('lowpass?');
             }
             i++;
         } 

@@ -1,7 +1,5 @@
 // Handles display and manipulation of original SEQUENCE which informs the rest of the app
 
-
-
 Sequencer.controller( 'Grid', [ 'SequencerService', '$scope', function(SequencerService, $scope) {
     //$scope.sequence = JSON.parse(localStorage.getItem("SEQUENCE")) || SEQUENCE;
     $scope.sequence = SEQUENCE;
@@ -9,7 +7,6 @@ Sequencer.controller( 'Grid', [ 'SequencerService', '$scope', function(Sequencer
 
     function init() {
         $scope.createLayers();
-        
     }
 
     $scope.showGrid = function() {

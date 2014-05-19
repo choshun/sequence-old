@@ -58,7 +58,7 @@ var thetime = 0,
     function animate(myRectangle, canvas, canvasContext) {
         // update
 
-        console.log('CONTEXT TIME', context.currentTime);
+        //console.log('CONTEXT TIME', context.currentTime);
 
         thetime += 10;
         if (LFOArray[theIndex] !== undefined) {

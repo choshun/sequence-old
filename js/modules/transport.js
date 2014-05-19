@@ -23,8 +23,10 @@ Sequencer.directive('play', function(SequencerService) {
         link: function(scope, elm, attrs) {
             var playing = false;
 
-            document.addEventListener('keyup', function(event) {
+            document.addEventListener('keydown', function(event) {
                 if (event.which === 32) {
+                    event.preventDefault();
+
                     play();
                 }
             });
@@ -36,7 +38,18 @@ Sequencer.directive('play', function(SequencerService) {
             function play() {
                 playing = !playing;
                 time = context.currentTime; // in scheduler
-                playing ? scheduler(SEQUENCE) : pause();
+                if (playing) {
+                    scheduler(SEQUENCE);
+                    canvasTest();
+                } else {
+                    pause();
+                    cancelAnimationFrame(rFrame);
+                }
+            }
+
+            function init(SEQUENCE) {
+                scheduler(SEQUENCE);
+                
             }
         }
     };

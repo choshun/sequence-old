@@ -1,8 +1,8 @@
 var routeArray = new Array();
 
 // Once everything is kicked off, vars for the things being triggered
-var noteLength = .8;
-var LFOArray;
+var noteLength = 1;
+//var LFOArray;
 var gain, reverb, lowPass, square, sin;
 
 var lowPassIsOn = false,
@@ -17,7 +17,6 @@ function init() {
 
 /** TODO: Pretty sure the effects don't need **/
 function playOsc( time ) {
-
     setOscGain();
     setOscReverb();
     setOscLowPassFilter();
@@ -89,11 +88,13 @@ function createSinOsc( time ) {
 /** END OSCILLATORS **/
 
 function checkChaosSettings() {
+
     var $input = $('#chaos-settings').find('input');
     var $lowpass = $('#chaos-lowpass');
     var $freq = $('#chaos-freq');
 
     $input.click(function() {
+
         lowPassIsOn = ($lowpass.prop('checked') === true) ? true : false;
         freqIsOn = ($freq.prop('checked') === true) ? true : false;
 
@@ -194,3 +195,5 @@ function lfodParamTest() {
     lfo.connect(lowPass);
     lowPass.connect(lowPass.frequency);
 }
+
+init();

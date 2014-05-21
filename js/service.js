@@ -1,8 +1,9 @@
 Sequencer.service('SequencerService', ['$rootScope', function($rootScope) {
     return {
-        tempo: 120,
+        tempo: 60,
         measures: 1,
         measureLength: 1,
+        automation: [],
         maintainTempo: function(item) {
             this.tempo = item;
             this.computeMeasureTime(this.tempo);
@@ -12,7 +13,7 @@ Sequencer.service('SequencerService', ['$rootScope', function($rootScope) {
             this.computeMeasureTime(this.tempo);
         },
         computeMeasureTime: function(tempo) {
-			this.measureLength = 30 / this.tempo;
+			this.measureLength = 60 / this.tempo;
 			$rootScope.$broadcast('measureTime.update', this.measureLength);
 			console.log('MULTIPLIER', this.measureLength);
         },
@@ -24,6 +25,9 @@ Sequencer.service('SequencerService', ['$rootScope', function($rootScope) {
 			localStorage.setItem('SEQUENCE', JSON.stringify(SEQUENCE));
 			SEQUENCE = JSON.parse(localStorage.getItem("SEQUENCE"));
 			//$rootScope.$broadcast('sequence.update');
+        },
+        updateAutomation: function(automation) {
+            LFOArray = automation;
         }
     };
 }]);

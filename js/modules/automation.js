@@ -2,78 +2,80 @@
 // Right now it's the kaos pad thingy as the only controller, the constructed array should be able to drive any asset type, 
 // as of now it's osc and canvas (canvas kind of :/)
 
-// chaos pad
-var $pad = $('#chaos-pad');
-var $padWidth = $pad.width(),
-    $padHeight = $pad.height();
+Sequencer.controller('Automation', ['SequencerService', '$scope', function(SequencerService, $scope) {
 
-var cursorX, cursorY;
+	$scope.automation = [];
 
-function init() {
-	kaosPad();
-	createLFOArray();
-}
+	function init() {
+		$scope.createAutomation();
+	}
 
+	$scope.updateAutomation = function() {
+        SequencerService.updateAutomation($scope.automation);
+    };
 
-/** KAOS PAD **/
-function kaosPad() {
-    // for chaos pad x and y
-    cursorY = 0;
-    cursorX = 0;
+    $scope.createAutomation = function() {
 
-    $pad.mousemove(function(e){
+		var duration = 1,
+			frequency = (lowPassIsOn) ? 2.0 * $scope.cursorY : 2.0,
+			scale = 1,
+			chaosFreqMultiplier = 3000 * $scope.cursorX;
 
-        /** TODO: only change these when the command key is on **/
+		console.log(frequency);
 
-        cursorX = (window.Event) ? e.pageX : event.clientX;
-        cursorX = cursorX - $pad.offset().left;
-        cursorY = (window.Event) ? e.pageY : event.clientY;
-        cursorY = cursorY - $pad.offset().top;
+		var valueCount = 4096;
 
-        var section = $padWidth * 30;
+		values = new Float32Array(valueCount);
 
-        cursorX = Math.floor($padWidth / section * cursorX) * .1 * 2.5 + .1;
-        cursorY = Math.floor($padWidth / section * cursorY) * .1 * 5 + .1;
+		for (var i = 0; i < valueCount; i++) {
+			var percent = (i / valueCount) * duration * frequency;
+			values[i] = Math.abs(1 + (Math.sin(percent * 2 * Math.PI) * scale) * ((lowPassIsOn) ? chaosFreqMultiplier : 3000));
+			// Set the last value to one, to restore playbackRate to normal at the end.
+			if (i == valueCount - 1) {
+				values[i] = 1 * ((lowPassIsOn) ? chaosFreqMultiplier : 3000);
+			}
+		}
+		//console.log(values);
 
-        //console.log('CURSOR Y' + cursorY);
+		$scope.automation = values;
 
-        createLFOArray();
+		$scope.updateAutomation();
+    };
 
-    });
-    
-}
+    init();
 
-// from http://chimera.labs.oreilly.com/books/1234000001552/ch02.html#s02_6
-// Need to make an lfo sin multiplier for lowpass... can't figure out how to make it work like the gain example :(
-function createLFOArray() {
-    var DURATION = noteLength;
-    var FREQUENCY = (lowPassIsOn) ? 2.0 * cursorY : 2.0;
-    //var FREQUENCY = 2 * cursorY;
-    var SCALE = 1;
+}]);
 
-    var chaosFreqMultiplier = 3000 * cursorX;
+// TODO, don't make cursorx and y scoped, just pass values to controller
+Sequencer.directive('automate', function(SequencerService) {
+	return {
+        restrict: 'A',
+        link: function(scope, elm, attrs) {
+			scope.cursorY = 0;
+			scope.cursorX = 0;
 
-    // Split the time into valueCount discrete steps.
-    var valueCount = 4096;
-    // Create a sinusoidal value curve.
-    // Why I used a typed array: http://stackoverflow.com/questions/15823021/when-to-use-float32array-instead-of-array-in-javascript
-    // Basically use a normal array, except when you need to quickly access its values in multiple different places
-    var values = new Float32Array(valueCount);
+			var $padWidth = elm.width(),
+				$padHeight = elm.height();
 
-    console.log('LENGTH', values);
+			elm.mousemove(function(e){
 
-    for (var i = 0; i < valueCount; i++) {
-        var percent = (i / valueCount) * DURATION*FREQUENCY;
-        values[i] = Math.abs(1 + (Math.sin(percent * 2 * Math.PI) * SCALE) * ((lowPassIsOn) ? chaosFreqMultiplier : 3000));
-        // Set the last value to one, to restore playbackRate to normal at the end.
-        if (i == valueCount - 1) {
-            values[i] = 1 * ((lowPassIsOn) ? chaosFreqMultiplier : 3000);
+			/** TODO: only change these when the command key is on **/
+
+			scope.cursorX = (window.Event) ? e.pageX : event.clientX;
+			scope.cursorX = scope.cursorX - elm.offset().left;
+			scope.cursorY = (window.Event) ? e.pageY : event.clientY;
+			scope.cursorY = scope.cursorY - elm.offset().top;
+
+			var section = $padWidth * 30;
+
+			scope.cursorX = Math.floor($padWidth / section * scope.cursorX) * 0.1 * 2.5 + 0.1;
+			scope.cursorY = Math.floor($padWidth / section * scope.cursorY) * 0.1 * 5 + 0.1;
+
+			//console.log('CURSOR Y' + cursorY);
+
+			scope.createAutomation();
+
+			});
         }
-    }
-
-    //console.log(values);
-
-    LFOArray = values;
-}
-
-init();
+    };
+});

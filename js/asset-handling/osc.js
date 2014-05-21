@@ -50,7 +50,10 @@ function setOscLowPassFilter() {
     //lowPass.frequency.value = 1000; // Vanilla set cutoff to static 1000 HZ
 
     //console.log('LFOARRAY', LFOArray);
-    lowPass.frequency.setValueCurveAtTime(LFOArray, context.currentTime, noteLength);
+    // TODO: WHY 2?!?!?!?
+
+    lowPass.frequency.setValueCurveAtTime(LFOArray, context.currentTime, 2);
+    //lowPass.frequency.setValueCurveAtTime(LFOArray, context.currentTime, noteLength);
     lowPass.Q.value = 10; // filter resonance
 
     //routeArray.push(lowPass);

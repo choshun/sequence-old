@@ -11,6 +11,8 @@ var canvas = document.getElementById('canvas'),
     canvasContext = canvas.getContext('2d');
     
     function canvasTest() {
+        //var wrapper = getComputedStyle(document.getElementById('canvas-wrapper'));
+
         var wrapper = getComputedStyle(document.getElementById('canvas-wrapper'));
 
         var height = parseInt(wrapper.getPropertyValue('height')),
@@ -45,7 +47,7 @@ var canvas = document.getElementById('canvas'),
 
     function drawRectangle(myRectangle, context) {
         context.beginPath();
-        context.rect(myRectangle.x, myRectangle.y, myRectangle.width * LFOArray[theIndex] / 1000, myRectangle.height * LFOArray[theIndex] / 1000);
+        context.rect(myRectangle.x * (newX / 200 + 300) % 1000 + ($(window).width() / 3), myRectangle.y * (newX / 200) % 1000 + 100, myRectangle.width * LFOArray[theIndex] / 1000, myRectangle.height * LFOArray[theIndex] / 1000);
         context.fillStyle = 'rgba(' + newX + ','+ newX/ 2+',200, '+ newX/ 300 +')';
         context.fill();
         context.lineWidth = myRectangle.borderWidth;
@@ -59,6 +61,9 @@ var thetime = 0,
         // update
 
         //console.log('CONTEXT TIME', context.currentTime);
+        testTime = parseInt((context.currentTime % 1) * 1000);
+
+        console.log(testTime);
 
         thetime += 10;
         if (LFOArray[theIndex] !== undefined) {
@@ -69,7 +74,7 @@ var thetime = 0,
         
         var linearSpeed = 100;
         // pixels / second
-        newX = linearSpeed * parseInt(LFOArray[theIndex]) / 1000;
+        newX = linearSpeed * parseInt(LFOArray[testTime]) / 1000;
 
         myRectangle.x = newX + canvas.height/4 + (300 - newX);
         myRectangle.y = newX * .3 + 50 + (200  - newX);

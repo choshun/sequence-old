@@ -22,6 +22,9 @@ h1 {
 	height:200px;
 	width:200px;
 	background-color:#0088cc;
+	position: absolute;
+	top: 0;
+	left:0;
 }
 
 #sequencer {
@@ -62,7 +65,7 @@ h1 {
 }
 
 canvas {
-	border: 1px solid;
+	
 }
 
 

@@ -21,9 +21,9 @@ Sequencer.controller('Automation', ['SequencerService', '$scope', function(Seque
 			scale = 1,
 			chaosFreqMultiplier = 3000 * $scope.cursorX;
 
-		console.log(frequency);
+		console.log('measureLength!!' + SequencerService.measureLength);
 
-		var valueCount = 4096;
+		var valueCount = SequencerService.measureLength * 2000;
 
 		values = new Float32Array(valueCount);
 

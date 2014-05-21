@@ -36,11 +36,14 @@ Sequencer.directive('play', function(SequencerService) {
             });
 
             function play() {
+                
                 playing = !playing;
                 time = context.currentTime; // in scheduler
                 if (playing) {
                     scheduler(SEQUENCE);
                     canvasTest();
+
+
                 } else {
                     pause();
                     cancelAnimationFrame(rFrame);

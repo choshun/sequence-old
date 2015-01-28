@@ -46,11 +46,17 @@ module.exports = function(grunt){
 						'public/js/vendor/angular-ui-router/release/angular-ui-router.js',
 						'public/js/vendor/jquery/dist/jquery.js',
 
-						// Application
+						// Mapmaker
 						'public/js/application/mapmaker/mapmaker.js',
 						'public/js/application/mapmaker/service.mapmaker.js',
 						'public/js/application/mapmaker/ctrl.mapmaker.js',
 						'public/js/application/mapmaker/directive.position.js',
+
+						// Utility
+						'public/js/application/utility/utility.js',
+						'public/js/application/utility/audio-context.js',
+
+						// App
 						'public/js/application/sequence.js'
 					]
 				}

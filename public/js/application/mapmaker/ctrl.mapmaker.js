@@ -1,6 +1,6 @@
 angular
     .module('mapmaker')
-    .controller('MapmakerCtrl', ['$scope', '$timeout', 'MapService', function($scope, $timeout, MapService) {
+    .controller('MapmakerCtrl', ['$scope', '$timeout', 'MapService', 'AudioContextService', function($scope, $timeout, MapService, AudioContextService) {
 
     	this.model = {
     		'Rob': 'I am the captian now',
@@ -15,6 +15,10 @@ angular
                 
     		]
     	};
+
+        var context = AudioContextService.getContext();
+
+        console.log(context);
 
     	this.updateNodeName = function(name, index) {
     		this.model.nodes[index].name = name;

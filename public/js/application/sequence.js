@@ -2,7 +2,7 @@
  * @fileOverview - bootstrapping of the best risk game ever!
  */
 
-angular.module('sequence', ['ui.router', 'mapmaker'])
+angular.module('sequence', ['ui.router', 'mapmaker', 'utility'])
 	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 		$stateProvider
 		    .state('home', {

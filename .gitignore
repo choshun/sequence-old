@@ -1,0 +1,5 @@
+node_modules/
+back/
+*.map
+public/js/dist
+public/js/vendor

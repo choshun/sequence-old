@@ -12,6 +12,7 @@ angular
     			{
     				'name': 'Fresno'
     			}
+                
     		]
     	};
 

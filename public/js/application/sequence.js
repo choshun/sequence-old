@@ -2,7 +2,7 @@
  * @fileOverview - bootstrapping of the best risk game ever!
  */
 
-angular.module('warshark', ['ui.router', 'mapmaker'])
+angular.module('sequence', ['ui.router', 'mapmaker'])
 	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 		$stateProvider
 		    .state('home', {

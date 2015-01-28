@@ -40,7 +40,7 @@ module.exports = function(grunt){
 				},
 
 				files: {
-					'public/js/dist/warshark.js': [
+					'public/js/dist/sequence.js': [
 						// Vendor
 						'public/js/vendor/angular/angular.js',
 						'public/js/vendor/angular-ui-router/release/angular-ui-router.js',
@@ -51,7 +51,7 @@ module.exports = function(grunt){
 						'public/js/application/mapmaker/service.mapmaker.js',
 						'public/js/application/mapmaker/ctrl.mapmaker.js',
 						'public/js/application/mapmaker/directive.position.js',
-						'public/js/application/warshark.js'
+						'public/js/application/sequence.js'
 					]
 				}
 			}

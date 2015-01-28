@@ -6,7 +6,7 @@ var Map = mongoose.model('Map');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  	res.render('index', { title: 'Warshark' });
+  	res.render('index', { title: 'Sequence' });
 });
 
 // GET all maps

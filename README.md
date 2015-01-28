@@ -1,65 +1,23 @@
-Angular project bootstrapped with the app name Sequencer. Wes pointed out it's more of a DAW, but ideally any callback will fire (visual audio, w/e).
+## warShark
 
-To change it go into var SEQUENCER and change stuff (in/sequence/new-sequence).
+### Setup
 
+1. make sure you have node, npm, and mongodb installed
+2. Go to root
+3. $ npm install
+4. $ npm install -g bower
+5. $ bower install
+6. $ npm start
+7. $ mongod (you may need to go to dir the executable is located, in my case /usr/local/Cellar/mongodb/2.6.5/bin since I installed via homebrew)
+8. Go to  http://localhost:3000
 
-## Project structure
+### Helpful reading
 
-#### /sequence
+* [MEAN stack intro tutorial (what I based the stack on)](https://thinkster.io/angulartutorial/mean-stack-tutorial/)
+* [ui-router tutorial (what we're using for views/wiring controllers)](https://scotch.io/tutorials/angular-routing-using-ui-router)
+* [mongoose docs (what we're using to create schemas for services))](http://mongoosejs.com/docs/index.html)
+* [a pretty good tutorial on directives!, hopefully most of the stuff will be in directives and services](https://amitgharat.wordpress.com/2013/06/08/the-hitchhikers-guide-to-the-directive/)
 
-raw json of time signatures, and things to do. Time is in fraction of 1 measure, so .25 at 60bpm is .25 secs
+### Hopes and Dreams
 
-```javascript
-var SEQUENCE = [
-	{
-        "time": 0.25,
-        "events": [
-            {
-                "layer": 1,
-                "type": "audio",
-                "params": {
-                    "sample": 1,
-                    "velocity": 0.5
-                }
-            }
-        ]
-    }
-];
-```
-
-TODO: 
-model it more closely to midi, or osc
-
-#### root
-
-###### scheduler.js
-what fires sounds, based on [this](http://www.html5rocks.com/en/tutorials/audio/scheduling/)
-
-###### sequencer.js
-handles of prepping object to scheduler.js
-
-###### service.js
-rootScope that everything shares (tempo, measures, etc)
-
-#### /modules
-Directives that work as an intermediary between DOM manipulation and the sequence object
-
-###### transport.js
-play, pause, tempo, measure
-
-###### grid.js
-adding, removing signatures, assigning callbacks per layer
-
-###### router.js, not done yet
-node routing for audio stuff, ie source -> destination configuration
-
-###### automation.js, not done yet
-visual automation of callback paramaters over time.
-
-####/asset handling
-
-will be what handles/defines callbacks, right now it's just osc and samples
-
-
-## To use
-click the thing with the thing
+So I'm hoping all dom logic will be in a directive, that then sets the model from a call to a controller method from the directive (have a working example). All object logic will be in services. Because we load controllers based on states, I really hope there will be NO logic in the controller, only setting the model values the controller owns. dare 2 dream

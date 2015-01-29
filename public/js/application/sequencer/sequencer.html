@@ -1,0 +1,12 @@
+<sequence>
+	{{sequence.model.Rob}}
+
+	<node 
+		ng-repeat="node in sequence.model.nodes"
+		node-name="{{node.name}}" 
+		update="sequence.updateNodeName(nodeName, nodePosition)" 
+		node-index="{{$index}}"
+	>
+		{{node.name}}
+	</node>
+</sequence>

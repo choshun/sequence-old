@@ -1,6 +1,6 @@
 angular
-    .module('mapmaker')
-    .controller('MapmakerCtrl', ['$scope', '$timeout', 'MapService', 'AudioContextService', 'BufferService', 'SampleService', function($scope, $timeout, MapService, AudioContextService, BufferService, SampleService) {
+    .module('sequencer')
+    .controller('SequencerCtrl', ['$scope', '$timeout', 'AudioContextService', 'BufferService', 'SampleService', function($scope, $timeout, AudioContextService, BufferService, SampleService) {
 
         var context = AudioContextService.getContext();
 
@@ -63,15 +63,15 @@ angular
 
 		this.getMaps = function() {
 			
-			console.log('map service!');
-			var mapPromise = MapService.getMaps();
+			// console.log('map service!');
+			// var mapPromise = MapService.getMaps();
 
-			mapPromise.then(function (result) {
-	            this.maps = result.data;
+			// mapPromise.then(function (result) {
+	  //           this.maps = result.data;
 
-	            console.log('maps', this.maps);
-	        });
+	  //           console.log('maps', this.maps);
+	  //       });
 		};
 
-		this.getMaps();
+		//this.getMaps();
     }]);

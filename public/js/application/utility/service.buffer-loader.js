@@ -6,7 +6,7 @@
 angular
     .module('utility')
     .service('BufferService', [function() {
-
+    	
 		/**
 	     * Constructor for the audio loader
 	     *

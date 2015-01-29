@@ -1,6 +1,37 @@
 angular
     .module('mapmaker')
-    .controller('MapmakerCtrl', ['$scope', '$timeout', 'MapService', 'AudioContextService', function($scope, $timeout, MapService, AudioContextService) {
+    .controller('MapmakerCtrl', ['$scope', '$timeout', 'MapService', 'AudioContextService', 'BufferService' , function($scope, $timeout, MapService, AudioContextService, BufferService) {
+
+        var context = AudioContextService.getContext();
+
+        console.log(context);
+
+        // buffer load test
+        var bufferList = [];
+
+        var sampleArray = '/samples/FH2_Kick_26.wav /samples/FH2_Hat_09.wav /samples/FH2_Snare_05.wav /samples/l960big_empty_church.wav'.split(' ');
+
+        console.log(sampleArray);
+
+        function bufferLoad() {
+            var bufferLoader = new BufferService.loader(
+                 context,
+                 sampleArray,
+                 loadCallback
+            );
+
+            bufferLoader.load(); // from audio-helpers.js
+        }
+
+        function loadCallback(buffers){
+            bufferList = buffers;
+            bufferLoaded = true;
+            console.log('WE DID IT', bufferList);
+            //$('.loading').addClass('hidden');
+        }
+
+        bufferLoad();
+        // end buffer load test
 
     	this.model = {
     		'Rob': 'I am the captian now',
@@ -15,10 +46,7 @@ angular
                 
     		]
     	};
-
-        var context = AudioContextService.getContext();
-
-        console.log(context);
+        
 
     	this.updateNodeName = function(name, index) {
     		this.model.nodes[index].name = name;

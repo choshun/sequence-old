@@ -43,11 +43,13 @@ what fires events, based on [this](http://www.html5rocks.com/en/tutorials/audio/
 the end result of event firing, ie play a sample, osc, or canvas
 
 ##### js/application/controllers
-controllers (directives) for editing sequence or automation, so far a grid and kaos pad. Also holds the sequence controller, this should be the only folder with controllers (point of truth for sequence model, and cursorX/Y model)
+controllers (directives) for editing sequence or automation, so far a grid and kaos pad. Could include a piano roll, you get the idea.
 
 ##### js/application/transport
-Directive for play/pause
+Directive for play/pause. Creates concept of measure, beat, tempo etc.
 
+##### js/application/sequence
+The source of truth for the sequence model. Should have the only ng controller (as of now).
 
 ### To use
-Press space or toggle checkbox.
+Press space or toggle play checkbox.

@@ -1,36 +1,86 @@
+/**
+ * @fileOverview - sequencer model handling.
+ */
+
 angular
     .module('sequencer')
     .controller('SequencerCtrl', ['$scope', '$timeout', 'AudioContextService', 'BufferService', 'SampleService', function($scope, $timeout, AudioContextService, BufferService, SampleService) {
 
-        var context = AudioContextService.getContext();
+        var sequencer = this;
 
-        console.log(context);
+        function init() {
+            sequencer.bufferLoad();
 
-        // buffer load test
-        var bufferList = [];
+            // test
+            setTimeout(function() {
+                console.log(sequencer.bufferList, 'LIST?!?!?');
 
-        var sampleArray = '/samples/FH2_Kick_26.wav /samples/FH2_Hat_09.wav /samples/FH2_Snare_05.wav /samples/l960big_empty_church.wav'.split(' ');
-
-        console.log(sampleArray);
-
-        function bufferLoad() {
-            var bufferLoader = new BufferService.loader(
-                 context,
-                 sampleArray,
-                 loadCallback
-            );
-
-            bufferLoader.load(); // from audio-helpers.js
+                SampleService.playSample(0.1, sequencer.bufferList[0], sequencer.context);
+                SampleService.playSample(0.5, sequencer.bufferList[1], sequencer.context);
+                SampleService.playSample(0.8, sequencer.bufferList[2], sequencer.context);
+            }, 100);
         }
 
+        /**
+         * Callback for bufferloader, sets bufferlist used to play samples
+         *
+         * @param {array} audio buffers   
+         *            
+         * @private
+         */
+
         function loadCallback(buffers){
-            bufferList = buffers;
-            bufferLoaded = true;
-            console.log('WE DID IT', bufferList);
+            sequencer.bufferList = buffers;
+            //bufferLoaded = true;
+            //console.log('WE DID IT', sequencer.bufferList);
             //$('.loading').addClass('hidden');
         }
 
-        bufferLoad();
+        /**
+         * Audio Context! The main object that lets us do all the cool audio stuff
+         *
+         * @type {Object}
+         */
+
+        this.context = AudioContextService.getContext();
+
+        /**
+         * The bufferlist we send off to sample.js to play, gets populated with bufferload
+         *
+         * @type {Array}
+         */
+
+        this.bufferList = [];
+
+        /**
+         * The paths to the samples we're using
+         *
+         * @type {Array}
+         */
+
+        this.samples = [
+            '/samples/FH2_Kick_26.wav',
+            '/samples/FH2_Hat_09.wav',
+            '/samples/FH2_Snare_05.wav',
+            '/samples/l960big_empty_church.wav'
+        ];
+
+        /**
+         * sets sample buffers to be played
+         *
+         * @public
+         */
+
+        this.bufferLoad = function() {
+            var bufferLoader = new BufferService.loader(
+                 this.context,
+                 this.samples,
+                 loadCallback
+            );
+
+            bufferLoader.load();
+        };
+
         // end buffer load test
 
     	this.model = {
@@ -47,7 +97,6 @@ angular
     		]
     	};
         
-
     	this.updateNodeName = function(name, index) {
     		this.model.nodes[index].name = name;
     		$scope.$apply();
@@ -74,4 +123,8 @@ angular
 		};
 
 		//this.getMaps();
+        
+
+        init();
+
     }]);

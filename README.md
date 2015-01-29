@@ -11,7 +11,7 @@
 7. $ mongod
 8. Go to  http://localhost:3000
 
-raw json of time signatures, and things to do. Time is in fraction of 1 measure, so .25 at 60bpm is .25 secs
+example json of time signatures. Time is in fraction of 1 measure, so .25 at 60bpm is .25 secs
 
 ```javascript
 var SEQUENCE = [
@@ -31,13 +31,25 @@ var SEQUENCE = [
 ];
 ```
 
-TODO: 
-model it more closely to midi, or osc
+#### Brief overview of file structure
 
-#### root
+###### js/application/utility
+Helper functions, ie get context, create audio buffers
 
-###### scheduler.js
-what fires sounds, based on [this](http://www.html5rocks.com/en/tutorials/audio/scheduling/)
+###### js/application/scheduler
+what fires events, based on [this](http://www.html5rocks.com/en/tutorials/audio/scheduling/)
+
+###### js/application/destinations
+the end result of event firing, ie play a sample, osc, or canvas
+
+###### js/application/controllers
+controllers (directives) for editing sequence or automation, so far a grid and kaos pad. Also holds the sequence controller, this should be the only folder with controllers (point of truth for sequence model, and cursorX/Y model)
+
+###### js/application/transport
+Directive for play/pause
+
+
+#### Old:
 
 ###### sequencer.js
 handles of prepping object to scheduler.js

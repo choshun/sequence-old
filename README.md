@@ -49,33 +49,5 @@ controllers (directives) for editing sequence or automation, so far a grid and k
 Directive for play/pause
 
 
-#### Old:
-
-###### sequencer.js
-handles of prepping object to scheduler.js
-
-###### service.js
-rootScope that everything shares (tempo, measures, etc)
-
-#### /modules
-Directives that work as an intermediary between DOM manipulation and the sequence object
-
-###### transport.js
-play, pause, tempo, measure
-
-###### grid.js
-adding, removing signatures, assigning callbacks per layer
-
-###### router.js, not done yet
-node routing for audio stuff, ie source -> destination configuration
-
-###### automation.js, not done yet
-visual automation of callback paramaters over time.
-
-####/asset handling
-
-will be what handles/defines callbacks, right now it's just osc and samples
-
-
 ## To use
-Press space or toggle play.
+Press space or toggle checkbox.

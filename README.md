@@ -31,23 +31,23 @@ var SEQUENCE = [
 ];
 ```
 
-#### Brief overview of file structure
+### Brief overview of file structure
 
-###### js/application/utility
+##### js/application/utility
 Helper functions, ie get context, create audio buffers
 
-###### js/application/scheduler
+##### js/application/scheduler
 what fires events, based on [this](http://www.html5rocks.com/en/tutorials/audio/scheduling/)
 
-###### js/application/destinations
+##### js/application/destinations
 the end result of event firing, ie play a sample, osc, or canvas
 
-###### js/application/controllers
+##### js/application/controllers
 controllers (directives) for editing sequence or automation, so far a grid and kaos pad. Also holds the sequence controller, this should be the only folder with controllers (point of truth for sequence model, and cursorX/Y model)
 
-###### js/application/transport
+##### js/application/transport
 Directive for play/pause
 
 
-## To use
+### To use
 Press space or toggle checkbox.

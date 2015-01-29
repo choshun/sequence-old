@@ -46,19 +46,21 @@ module.exports = function(grunt){
 						'public/js/vendor/angular-ui-router/release/angular-ui-router.js',
 						'public/js/vendor/jquery/dist/jquery.js',
 
-						// Mapmaker (example)
-						'public/js/application/mapmaker/mapmaker.js',
-						'public/js/application/mapmaker/service.mapmaker.js',
-						'public/js/application/mapmaker/ctrl.mapmaker.js',
-						'public/js/application/mapmaker/directive.position.js',
-
 						// Utility
 						'public/js/application/utility/utility.js',
-						'public/js/application/utility/audio-context.js',
-						'public/js/application/utility/buffer-loader.js',
+						'public/js/application/utility/service.audio-context.js',
+						'public/js/application/utility/service.buffer-loader.js',
+
+						// Destinations
+						'public/js/application/destinations/destinations.js',
+						'public/js/application/destinations/service.sample.js',
+
+						// Sequencer
+						'public/js/application/sequencer/sequencer.js',
+						'public/js/application/sequencer/ctrl.sequencer.js',
 
 						// App
-						'public/js/application/sequence.js'
+						'public/js/application/app.js'
 					]
 				}
 			}

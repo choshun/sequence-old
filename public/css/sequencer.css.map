@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "file": "sequencer.css",
+  "sources": ["..\/sass\/sequencer\/sequencer.scss"],
+  "names": [],
+  "mappings": "AAAA,KACE,QAAS,KACT,KAAW,gDACX,iBAAkB,OAGpB,EACE,MAAO"
+}

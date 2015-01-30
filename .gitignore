@@ -1,6 +1,7 @@
 node_modules/
 back/
-*.map
+public/*.map
 public/sourcemap.map
 public/js/dist
 public/js/vendor
+*.log

@@ -10,10 +10,15 @@ module.exports = function(grunt){
 
 	// Config tasks
 	grunt.initConfig({
-		compass: {
+
+		sass: {
+			options: {
+				sourceMap: true,
+				outputStyle: 'compressed'
+			},
 			dist: {
-				options: {
-					config: 'config.rb'
+				files: {
+					'public/css/sequencer.css': 'public/sass/sequencer/sequencer.scss'
 				}
 			}
 		},
@@ -68,11 +73,21 @@ module.exports = function(grunt){
 
 		watch: {
 			files: ['public/js/application/**/*.js'],
-			tasks: ['uglify']
+			tasks: ['uglify'],
+			sass: {
+				files: ['public/sass/**/*.{scss,sass}','public/sass/_partials/**/*.{scss,sass}'],
+				tasks: ['sass:dist']
+			},
+			livereload: {
+				files: ['views/*.ejs', 'public/dist/js/*.{js,json}', 'public/css/*.css','public/img/**/*.{png,jpg,jpeg,gif,webp,svg}'],
+				options: {
+					livereload: true
+				}
+			}
 		}
 
 	});
 
 	// grunt.registerTask('compile', ['npm-install', 'clean:vendor', 'bower:install', 'copy:fonts', 'compass', 'copy:images', 'copy:css', 'concat', 'copy:js', 'copy:fileUploadMap', 'karma:unit']);
-	grunt.registerTask('default', ['watch']);
+	grunt.registerTask('default', ['watch', 'sass:dist']);
 };

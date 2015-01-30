@@ -29,11 +29,8 @@ angular
          * @private
          */
 
-        function loadCallback(buffers){
+        function loadCallback(buffers) {
             sequencer.bufferList = buffers;
-            //bufferLoaded = true;
-            //console.log('WE DID IT', sequencer.bufferList);
-            //$('.loading').addClass('hidden');
         }
 
         /**
@@ -79,6 +76,8 @@ angular
             );
 
             bufferLoader.load();
+            console.log('reload?');
+
         };
 
         // end buffer load test

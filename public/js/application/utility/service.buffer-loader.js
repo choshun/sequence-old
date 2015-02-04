@@ -7,6 +7,27 @@ angular
     .module('utility')
     .service('BufferService', [function() {
     	
+    	/**
+	     * Returns an array of sample paths from a sample object
+	     *
+	     * @param {Object} samples
+     	 *
+	     * @private
+	     */
+
+    	function getUrlList(samples) {
+    		var urlList = [];
+
+    		var i = 0,
+    			n = samples.length;
+
+    		for (; i < n; i++) {
+    			urlList.push(samples[i].sample);
+    		}
+
+    		return urlList;
+    	}
+
 		/**
 	     * Constructor for the audio loader
 	     *
@@ -17,9 +38,9 @@ angular
 	     * @public
 	     */
 
-		this.loader = function(context, urlList, callback) {
+		this.loader = function(context, samples, callback) {
 			this.context = context;
-		    this.urlList = urlList;
+		    this.urlList = getUrlList(samples);
 		    this.onload = callback;
 		    this.bufferList = [];
 		    this.loadCount = 0;

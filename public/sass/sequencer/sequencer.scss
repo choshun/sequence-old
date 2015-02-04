@@ -1,9 +1,25 @@
+$blue: #00B7FF;
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: green;
 }
 
 a {
-  color: #00B7FF;
+  color: $blue;
+}
+
+sequencer {
+	border: 2px solid $blue;
+	display: block;
+	margin: 0 auto;
+	width: 80%;
+}
+
+layer {
+	padding: 30px;
+	border-bottom: 2px solid $blue;
+
+	&:last-child {
+		border-bottom: none;
+	}
 }

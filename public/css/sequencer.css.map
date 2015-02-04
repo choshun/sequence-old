@@ -3,5 +3,5 @@
   "file": "sequencer.css",
   "sources": ["..\/sass\/sequencer\/sequencer.scss"],
   "names": [],
-  "mappings": "AAAA,KACE,QAAS,KACT,KAAW,gDACX,iBAAkB,OAGpB,EACE,MAAO"
+  "mappings": "AAEA,KACE,KAAW,iDAGb,EACE,MAPK,SAUP,UACC,OAAQ,kBACR,QAAS,MACT,OAAQ,OACR,MAAO,KAGR,MACC,QAAS,KACT,cAAe,mBAAhB,KAAK,YAGH,cAAe"
 }

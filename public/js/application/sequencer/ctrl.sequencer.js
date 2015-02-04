@@ -10,6 +10,7 @@ angular
 
         function init() {
             sequencer.bufferLoad();
+            createLayers(sequencer.samples);
 
             // test
             setTimeout(function() {
@@ -19,6 +20,26 @@ angular
                 SampleService.playSample(0.5, sequencer.bufferList[1], sequencer.context);
                 SampleService.playSample(0.8, sequencer.bufferList[2], sequencer.context);
             }, 100);
+        }
+
+
+        // quick test of creating grid layers based on available samples
+
+        function createLayers(samples) {
+            var type = '';
+
+            var i = 0,
+                n = samples.length;
+
+            for (; i < n; i++) {
+                type = samples[i].type;
+
+                if (type === 'sample') {
+                    sequencer.layers.push(samples[i].sample);
+                }
+            }
+
+            console.log(sequencer.layers);
         }
 
         /**
@@ -50,16 +71,37 @@ angular
         this.bufferList = [];
 
         /**
+         * What layers there are in the grid
+         *
+         * @type {Array}
+         */
+
+        this.layers = [];
+
+        /**
          * The paths to the samples we're using
+         * TODO: should maybe be in sample service with a get and set (from mongo)
          *
          * @type {Array}
          */
 
         this.samples = [
-            '/samples/FH2_Kick_26.wav',
-            '/samples/FH2_Hat_09.wav',
-            '/samples/FH2_Snare_05.wav',
-            '/samples/l960big_empty_church.wav'
+            {
+                "type": "sample",
+                "sample": "/samples/FH2_Kick_26.wav"
+            },
+            {
+                "type": "sample",
+                "sample": "/samples/FH2_Hat_09.wav"
+            },
+            {
+                "type": "sample",
+                "sample": "/samples/FH2_Kick_26.wav"
+            },
+            {
+                "type": "frequency response",
+                "sample": "/samples/l960big_empty_church.wav"
+            }
         ];
 
         /**
@@ -76,8 +118,6 @@ angular
             );
 
             bufferLoader.load();
-            console.log('reload?');
-
         };
 
         // end buffer load test
@@ -105,7 +145,6 @@ angular
     	// For testing directive firing when control model changes with $observe
 		$timeout(angular.bind(this, function() {
 			this.model.nodes[0].name = 'snyarf';
-			$scope.$apply();
 		}), 3000);
 		
 

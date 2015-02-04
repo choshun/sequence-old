@@ -1,12 +1,10 @@
-<sequence>
-	{{sequence.model.Rob}}
-
-	<node 
-		ng-repeat="node in sequence.model.nodes"
-		node-name="{{node.name}}" 
+<sequencer>
+	<layer 
+		ng-repeat="layer in sequence.layers track by $index"
 		update="sequence.updateNodeName(nodeName, nodePosition)" 
-		node-index="{{$index}}"
+		layer-index="{{$index}}"
+		class="layer"
 	>
-		{{node.name}}
+		{{layer}}
 	</node>
-</sequence>
+</sequencer>

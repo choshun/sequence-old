@@ -60,6 +60,10 @@ module.exports = function(grunt){
 						'public/js/application/destinations/destinations.js',
 						'public/js/application/destinations/service.sample.js',
 
+						// Controllers
+						'public/js/application/controllers/controllers.js',
+						'public/js/application/controllers/directive.layer.js',
+
 						// Sequencer
 						'public/js/application/sequencer/sequencer.js',
 						'public/js/application/sequencer/ctrl.sequencer.js',

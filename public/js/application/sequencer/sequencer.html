@@ -1,9 +1,9 @@
-<sequencer>
+<sequencer id="sequencer">
 	<layer 
 		ng-repeat="layer in sequence.layers track by $index"
-		update="sequence.updateNodeName(nodeName, nodePosition)" 
+		add-trigger="sequence.addTrigger(time, layer)" 
 		layer-index="{{$index}}"
-		class="layer"
+		layer
 	>
 		{{layer}}
 	</node>

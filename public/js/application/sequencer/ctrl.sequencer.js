@@ -45,7 +45,7 @@ angular
         /**
          * Callback for bufferloader, sets bufferlist used to play samples
          *
-         * @param {array} audio buffers   
+         * @param {Array} audio buffers   
          *            
          * @private
          */
@@ -105,6 +105,15 @@ angular
         ];
 
         /**
+         * The sequence driving the sequencer
+         * TODO: should get this with a service with a get and set (from mongo)
+         *
+         * @type {Array}
+         */
+
+        this.sequence = [];
+
+        /**
          * sets sample buffers to be played
          *
          * @public
@@ -120,21 +129,28 @@ angular
             bufferLoader.load();
         };
 
-        // end buffer load test
+        /**
+         * Callback for bufferloader, sets bufferlist used to play samples
+         *
+         * @param {Number} time as percent of measure
+         * @param {Number} layer
+         *            
+         * @public
+         */
 
-    	this.model = {
-    		'Rob': 'I am the captian now',
-    		'I believe in alex': false,
-    		'nodes': [
-    			{
-    				'name': 'Mexico'
-    			},
-    			{
-    				'name': 'Fresno'
-    			}
-                
-    		]
-    	};
+        this.addTrigger = function(time, layer) {
+            sequencer.sequence.push({
+                "time": time,
+                "events": [
+                    {
+                        "layer": layer,
+                        "type": sequencer.samples[layer].type // sets type based on layer object
+                    }
+                ]
+            });
+
+            console.log(sequencer.sequence);
+        };
         
     	this.updateNodeName = function(name, index) {
     		this.model.nodes[index].name = name;
@@ -143,9 +159,9 @@ angular
     	};
 
     	// For testing directive firing when control model changes with $observe
-		$timeout(angular.bind(this, function() {
-			this.model.nodes[0].name = 'snyarf';
-		}), 3000);
+		// $timeout(angular.bind(this, function() {
+		// 	this.model.nodes[0].name = 'snyarf';
+		// }), 3000);
 		
 
 		this.getMaps = function() {

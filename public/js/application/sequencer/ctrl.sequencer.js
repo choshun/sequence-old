@@ -22,8 +22,8 @@ angular
             }, 100);
         }
 
-
-        // quick test of creating grid layers based on available samples
+        // TODO: put in a service once I figure out scheduler
+        // quick test of creating grid layers based on available samples, right now just drives ui
 
         function createLayers(samples) {
             var type = '';
@@ -34,13 +34,27 @@ angular
             for (; i < n; i++) {
                 type = samples[i].type;
 
+                // TODO: kinda tightly coupled to type, might wanna splice in events after multiple types
+
                 if (type === 'sample') {
-                    sequencer.layers.push(samples[i].sample);
+                    sequencer.layers.push({
+                        "sample": samples[i].sample,
+                        "events": []
+                    });
                 }
             }
-
-            console.log(sequencer.layers);
         }
+
+        // TODO: put in a service once I figure out scheduler
+        // again quick test of creating grid layer trigger stuff from sequence object, right now just drives ui
+
+        this.createLayerObject = function(time, layer) {
+            sequencer.layers[layer].events.push({
+                "time": time
+            });
+
+            $scope.$apply(); // so sad I need this. Though model is updated, view doesn't update
+        };
 
         /**
          * Callback for bufferloader, sets bufferlist used to play samples
@@ -130,7 +144,7 @@ angular
         };
 
         /**
-         * Callback for bufferloader, sets bufferlist used to play samples
+         * Adds a trigger to the sequence
          *
          * @param {Number} time as percent of measure
          * @param {Number} layer
@@ -151,6 +165,15 @@ angular
 
             console.log(sequencer.sequence);
         };
+
+        /**
+         * Callback for bufferloader, sets bufferlist used to play samples
+         *
+         * @param {Number} time as percent of measure
+         * @param {Number} layer
+         *            
+         * @public
+         */
         
     	this.updateNodeName = function(name, index) {
     		this.model.nodes[index].name = name;

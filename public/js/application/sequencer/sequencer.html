@@ -1,10 +1,22 @@
+<!-- controller is "sequencer" -->
+
 <sequencer id="sequencer">
 	<layer 
-		ng-repeat="layer in sequence.layers track by $index"
-		add-trigger="sequence.addTrigger(time, layer)" 
+		ng-repeat="layer in sequencer.layers track by $index"
+		add-trigger="sequencer.addTrigger(time, layer)" 
+		create-layers="sequencer.createLayerObject(time, layer)"
 		layer-index="{{$index}}"
 		layer
 	>
-		{{layer}}
-	</node>
+		<trigger
+			ng-repeat="trigger in layer.events track by $index"
+			style="left: {{trigger.time}}%;"
+		>
+
+			<!-- {{trigger.time}} -->
+			
+		</trigger>
+	</layer>
 </sequencer>
+
+<pre>{{sequencer.sequence}}</pre>

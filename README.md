@@ -31,7 +31,7 @@ var SEQUENCE = [
 ];
 ```
 
-### Brief overview of file structure
+### app structure
 
 ##### js/application/utility
 Helper functions, ie get context, create audio buffers

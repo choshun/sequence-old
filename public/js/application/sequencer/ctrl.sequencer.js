@@ -53,7 +53,7 @@ angular
                 "time": time
             });
 
-            $scope.$apply(); // so sad I need this. Though model is updated, view doesn't update
+            $scope.$apply(); // update view
         };
 
         /**

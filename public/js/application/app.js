@@ -18,5 +18,6 @@ angular.module('sequence', ['ui.router', 'utility', 'destinations', 'controllers
 				controllerAs: 'sequencer'
 		    });
 
-		$urlRouterProvider.otherwise('/home');
+		$urlRouterProvider.otherwise('/sequencer');
+		
 	}]);

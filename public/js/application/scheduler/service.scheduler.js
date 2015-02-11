@@ -42,7 +42,6 @@ angular
 				// scheduler(); // TODO: NEEDS to wait till buffers are loaded
 				console.log('sequence?', SequencerService.getSequence());
 			}, 200);
-
 		}
 
 		function scheduler() {
@@ -52,19 +51,18 @@ angular
 		        
 		        if (SequencerService.getSequence()[index] !== undefined) {
 		            
-		        	
+		        	console.log('index?', index);
+
+		        	//console.log('sceduler update?', SequencerService.getSequence());
 		            trigger = SequencerService.getSequence()[index];
 		            eventTime = trigger.time + loopIndex + time;
 
 		            // TODO: make this seperate where you just pass in the callback object
 		            for (eventKey in trigger.events) {
-		                if (trigger.events[eventKey].type === 'audio') {
-		                	console.log('numer?', trigger.events[eventKey].layer);
-
-		                	console.log('shwa?', eventTime, BufferService.getBuffers()[0]);
+		                if (trigger.events[eventKey].type === 'sample') {
 
 		                    scheduleEvent(eventTime, BufferService.getBuffers()[trigger.events[eventKey].layer]);
-		                    //console.log(index, eventTime);
+
 		                } else {
 		                    //playOsc(eventTime);
 		                }
@@ -96,7 +94,7 @@ angular
 		function scheduleEvent(time, bufferSound) {
 		    //playSample( time, bufferSound );
 
-		    console.log('buffer?', bufferSound);
+		    // console.log('buffer?', bufferSound);
 		    SampleService.playSample(time, bufferSound, context);
 		}
 

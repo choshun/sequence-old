@@ -2,6 +2,8 @@
  * @fileOverview - sequencer model handling.
  */
 
+// TODO: !!! align sequence.sequence with sequenceservice
+
 angular
     .module('sequencer')
     .controller('SequencerCtrl', 
@@ -10,17 +12,17 @@ angular
         var sequencer = this;
 
         function init() {
-            sequencer.bufferLoad();
             createLayers(sequencer.samples);
+            sequencer.bufferLoad();
 
             // test
-            setTimeout(function() {
-                console.log(sequencer.bufferList, 'LIST?!?!?');
+            // setTimeout(function() {
+            //     console.log(sequencer.bufferList, 'LIST?!?!?');
 
-                SampleService.playSample(0.1, sequencer.bufferList[0], sequencer.context);
-                SampleService.playSample(0.5, sequencer.bufferList[1], sequencer.context);
-                SampleService.playSample(0.8, sequencer.bufferList[2], sequencer.context);
-            }, 100);
+            //     SampleService.playSample(0.1, sequencer.bufferList[0], sequencer.context);
+            //     SampleService.playSample(0.5, sequencer.bufferList[1], sequencer.context);
+            //     SampleService.playSample(0.8, sequencer.bufferList[2], sequencer.context);
+            // }, 100);
         }
 
         // TODO: put in a service once I figure out scheduler
@@ -66,7 +68,11 @@ angular
          */
 
         function loadCallback(buffers) {
-            sequencer.bufferList = buffers;
+            BufferService.updateBuffers(buffers);
+
+            // console.log('ctrl buffers', BufferService.getBuffers());
+
+            sequencer.bufferList = BufferService.getBuffers();
         }
 
         /**

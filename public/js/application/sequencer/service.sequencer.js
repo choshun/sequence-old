@@ -9,6 +9,14 @@ angular
     	
     	var sequencerService = this;
 
+    	function order(sequence) {
+    		sequence.sort(function(a, b) {
+    			return a.time - b.time;
+    		});
+
+    		return sequence;
+    	}
+
     	this.sequence = [];
 
     	// for testing
@@ -18,11 +26,7 @@ angular
 		        "events": [
 		            {
 		                "layer": 0,
-		                "type": "audio"
-		            },
-		            {
-		                "layer": 3,
-		                "type": "audio"
+		                "type": "sample"
 		            }
 		        ]
 		    },
@@ -31,7 +35,7 @@ angular
 		        "events": [
 		            {
 		                "layer": 2,
-		                "type": "audio"
+		                "type": "sample"
 		            }
 		        ]
 		    },
@@ -40,11 +44,11 @@ angular
 		        "events": [
 		            {
 		                "layer": 0,
-		                "type": "audio"
+		                "type": "sample"
 		            },
 		            {
 		                "layer": 1,
-		                "type": "audio"
+		                "type": "sample"
 		            }
 		        ]
 		    },
@@ -52,8 +56,8 @@ angular
 		        "time": 0.75,
 		        "events": [
 		            {
-		                "layer": 1,
-		                "type": "audio"
+		                "layer": 2,
+		                "type": "sample"
 		            }
 		        ]
 		    }
@@ -70,7 +74,9 @@ angular
 	     */
 
 		this.updateSequence = function(sequence) {
-		    sequencerService.sequence = sequence;
+			console.log('ordered?', order(sequence));
+
+		    sequencerService.sequence = order(sequence);
 		};
 
 		this.getSequence = function() {

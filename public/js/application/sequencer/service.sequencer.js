@@ -11,6 +11,54 @@ angular
 
     	this.sequence = [];
 
+    	// for testing
+    	this.sequence = [
+    		{
+		        "time": 0,
+		        "events": [
+		            {
+		                "layer": 0,
+		                "type": "audio"
+		            },
+		            {
+		                "layer": 3,
+		                "type": "audio"
+		            }
+		        ]
+		    },
+		    {
+		        "time": 0.25,
+		        "events": [
+		            {
+		                "layer": 2,
+		                "type": "audio"
+		            }
+		        ]
+		    },
+		    {
+		        "time": 0.5,
+		        "events": [
+		            {
+		                "layer": 0,
+		                "type": "audio"
+		            },
+		            {
+		                "layer": 1,
+		                "type": "audio"
+		            }
+		        ]
+		    },
+		    {
+		        "time": 0.75,
+		        "events": [
+		            {
+		                "layer": 1,
+		                "type": "audio"
+		            }
+		        ]
+		    }
+    	];
+
     	/**
 	     * Plays a sample from a buffer
 	     *

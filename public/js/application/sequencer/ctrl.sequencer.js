@@ -2,7 +2,7 @@
  * @fileOverview - sequencer model handling.
  */
 
-// TODO: !!! align sequence.sequence with sequenceservice
+// TODO: !!! have remove trigger :D
 
 angular
     .module('sequencer')
@@ -13,16 +13,8 @@ angular
 
         function init() {
             createLayers(sequencer.samples);
+            createLayerObject(sequencer.sequence);
             sequencer.bufferLoad();
-
-            // test
-            // setTimeout(function() {
-            //     console.log(sequencer.bufferList, 'LIST?!?!?');
-
-            //     SampleService.playSample(0.1, sequencer.bufferList[0], sequencer.context);
-            //     SampleService.playSample(0.5, sequencer.bufferList[1], sequencer.context);
-            //     SampleService.playSample(0.8, sequencer.bufferList[2], sequencer.context);
-            // }, 100);
         }
 
         // TODO: put in a service once I figure out scheduler
@@ -49,12 +41,42 @@ angular
         }
 
         // TODO: put in a service once I figure out scheduler
+        // quick test of loading already created sequence to ui
+
+        function createLayerObject(sequence) {
+            var theEvent = {},
+                layer = '';
+
+            // console.log('layer sequence', sequence, 'layer object', sequencer.layers);
+
+            var i = 0,
+                n = sequence.length;
+
+            // loop through sequence object
+            for (; i < n; i++) {
+                
+                console.log('is j a thing?', sequence[i].events.length);
+
+                // in each sequence object go through events and update view
+                for (var j = 0; j < sequence[i].events.length; j++) {
+                    layer = sequence[i].events[j].layer;
+
+                    sequencer.layers[layer].events.push({
+                        "time": sequence[i].time * 100
+                    });
+                }
+            }
+        }
+
+        // TODO: put in a service once I figure out scheduler
         // again quick test of creating grid layer trigger stuff from sequence object, right now just drives ui
 
-        this.createLayerObject = function(time, layer) {
+        this.addLayerObject = function(time, layer) {
             sequencer.layers[layer].events.push({
                 "time": time
             });
+
+            console.log('added to layer!');
 
             $scope.$apply(); // update view
         };
@@ -113,11 +135,11 @@ angular
             },
             {
                 "type": "sample",
-                "sample": "/samples/FH2_Hat_09.wav"
+                "sample": "/samples/FH2_Snare_05.wav"
             },
             {
                 "type": "sample",
-                "sample": "/samples/FH2_Kick_26.wav"
+                "sample": "/samples/FH2_Hat_09.wav"
             },
             {
                 "type": "frequency response",
@@ -132,7 +154,7 @@ angular
          * @type {Array}
          */
 
-        this.sequence = [];
+        this.sequence = SequencerService.getSequence() || [];
 
         /**
          * sets sample buffers to be played
@@ -160,6 +182,8 @@ angular
          */
 
         this.addTrigger = function(time, layer) {
+            // TODO: kinda awkward, should just add to sequence then get it back
+
             sequencer.sequence.push({
                 "time": time / 100, // turn back to seconds
                 "events": [
@@ -170,9 +194,8 @@ angular
                 ]
             });
 
-            console.log(sequencer.sequence);
-
             SequencerService.updateSequence(sequencer.sequence);
+            sequencer.sequence = SequencerService.getSequence();
         };
 
         /**

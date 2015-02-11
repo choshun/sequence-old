@@ -4,7 +4,8 @@
 
 angular
     .module('sequencer')
-    .controller('SequencerCtrl', ['$scope', '$timeout', 'AudioContextService', 'BufferService', 'SampleService', function($scope, $timeout, AudioContextService, BufferService, SampleService) {
+    .controller('SequencerCtrl', 
+        ['$scope', '$timeout', 'AudioContextService', 'BufferService', 'SampleService', 'SchedulerService', 'SequencerService', function($scope, $timeout, AudioContextService, BufferService, SampleService, SchedulerService, SequencerService) {
 
         var sequencer = this;
 
@@ -154,7 +155,7 @@ angular
 
         this.addTrigger = function(time, layer) {
             sequencer.sequence.push({
-                "time": time,
+                "time": time / 100, // turn back to seconds
                 "events": [
                     {
                         "layer": layer,
@@ -164,6 +165,8 @@ angular
             });
 
             console.log(sequencer.sequence);
+
+            SequencerService.updateSequence(sequencer.sequence);
         };
 
         /**

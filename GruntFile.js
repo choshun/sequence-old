@@ -67,6 +67,11 @@ module.exports = function(grunt){
 						// Sequencer
 						'public/js/application/sequencer/sequencer.js',
 						'public/js/application/sequencer/ctrl.sequencer.js',
+						'public/js/application/sequencer/service.sequencer.js',
+
+						// Scheduler
+						'public/js/application/scheduler/scheduler.js',
+						'public/js/application/scheduler/service.scheduler.js',
 
 						// App
 						'public/js/application/app.js'

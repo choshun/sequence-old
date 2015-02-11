@@ -5,7 +5,7 @@
 
 angular
     .module('scheduler')
-    .service('SchedulerService', ['AudioContextService', 'SequencerService', function(AudioContextService, SequencerService) {
+    .service('SchedulerService', ['AudioContextService', 'SequencerService', 'BufferService', 'SampleService', function(AudioContextService, SequencerService, BufferService, SampleService) {
     	// Scheduling vars
 		var context = AudioContextService.getContext();
 
@@ -35,31 +35,38 @@ angular
 		var scheduleSequence = {};
 
 		function init() {
-			//scheduler();
+			
 			console.log('sequence?', SequencerService.getSequence());
 
 			setTimeout(function() {
+				// scheduler(); // TODO: NEEDS to wait till buffers are loaded
 				console.log('sequence?', SequencerService.getSequence());
-			}, 4000);
+			}, 200);
 
 		}
 
 		function scheduler() {
 	    	while (eventTime < context.currentTime + scheduleAheadTime) {
-
-	    		console.log('blarg');
-
-		        if (scheduleSequence[index] !== undefined) {
-		            trigger = scheduleSequence[index];
+				
+				// console.log('kick off?', SequencerService.getSequence());
+		        
+		        if (SequencerService.getSequence()[index] !== undefined) {
+		            
+		        	
+		            trigger = SequencerService.getSequence()[index];
 		            eventTime = trigger.time + loopIndex + time;
 
 		            // TODO: make this seperate where you just pass in the callback object
 		            for (eventKey in trigger.events) {
 		                if (trigger.events[eventKey].type === 'audio') {
-		                    scheduleEvent(eventTime, bufferList[trigger.events[eventKey].params.sample]);
+		                	console.log('numer?', trigger.events[eventKey].layer);
+
+		                	console.log('shwa?', eventTime, BufferService.getBuffers()[0]);
+
+		                    scheduleEvent(eventTime, BufferService.getBuffers()[trigger.events[eventKey].layer]);
 		                    //console.log(index, eventTime);
 		                } else {
-		                    playOsc(eventTime);
+		                    //playOsc(eventTime);
 		                }
 		            }
 
@@ -69,6 +76,7 @@ angular
 		            index++;
 		        } else {
 		            //console.log('next event:', eventTime);
+
 		            index = 0;
 		            loopIndex += measureLength;
 		            console.log('NEW MEASURE', measureLength);
@@ -86,7 +94,10 @@ angular
 		}
 
 		function scheduleEvent(time, bufferSound) {
-		    playSample( time, bufferSound );
+		    //playSample( time, bufferSound );
+
+		    console.log('buffer?', bufferSound);
+		    SampleService.playSample(time, bufferSound, context);
 		}
 
 		init();

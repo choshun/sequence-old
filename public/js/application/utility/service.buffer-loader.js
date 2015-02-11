@@ -7,6 +7,8 @@ angular
     .module('utility')
     .service('BufferService', [function() {
     	
+    	var bufferService = this;
+
     	/**
 	     * Returns an array of sample paths from a sample object
 	     *
@@ -105,6 +107,15 @@ angular
 		    request.send();
 		};
 
+		this.updateBuffers = function(buffers) {
+			console.log('update?');
+			bufferService.buffers = buffers;
+		};
+
+		this.getBuffers = function() {
+			// console.log('return!', bufferService.buffers);
+			return bufferService.buffers;
+		};
 
     }]);
 

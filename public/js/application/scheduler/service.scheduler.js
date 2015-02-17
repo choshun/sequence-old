@@ -1,17 +1,29 @@
 /**
  * @fileOverview - wrapper for audio buffer loading, based on http://webaudioapi.com/samples/shared.js
  * @requires window.AudioContext
+ * !!!TODO: cleanup vars, rename them to be more accurate, make scheduler public, so service.transport can handle play
  */
 
 angular
     .module('scheduler')
     .service('SchedulerService', ['AudioContextService', 'SequencerService', 'BufferService', 'SampleService', function(AudioContextService, SequencerService, BufferService, SampleService) {
-    	// Scheduling vars
+		
 		var context = AudioContextService.getContext();
 
-		var isPlaying = false,
-			scheduleAheadTime = 0.1, //var scheduleAheadTime = 0.1; in secs
-			lookahead = 25, // var lookahead = 25; in ms
+		/**
+         * The time th while loop will look ahead to see what to schedule
+         *
+         * @type {Number} in s
+         */
+		var scheduleAheadTime = 0.1;
+
+		/**
+         * About resolution at which js will check what to schedule, fine if it drifts.
+         * the important thing is that it's smaller enough than the lookahead to accomodate event cycle clogging
+         *
+         * @type {Number} in ms
+         */
+		var lookahead = 25, // var lookahead = 25; in ms
 			timerID = 0;
 
 		var index = 0;
@@ -22,32 +34,24 @@ angular
 		    type = '',
 		    eventKey = '';
 
-		var addedTime = 0;
-
-		var currentBeat = 1;
-
-		//ghettoooo
+		// TODO: should be in transport
 		var loopIndex = 0;
 		var time = 0;
 		var pauseTime = 0;
 
 		var measureLength = 1;
-		var scheduleSequence = {};
 
 		function init() {
-			
-			console.log('sequence?', SequencerService.getSequence());
 
 			setTimeout(function() {
-				//scheduler(); // TODO: NEEDS to wait till buffers are loaded
-				console.log('sequence?', SequencerService.getSequence());
+				// console.log('sequence?', SequencerService.getSequence());
+				// scheduler(); // TODO: NEEDS to wait till buffers are loaded, also need to pass in sequence from service
+				
 			}, 200);
 		}
 
 		function scheduler() {
 	    	while (eventTime < context.currentTime + scheduleAheadTime) {
-				
-				// console.log('kick off?', SequencerService.getSequence());
 		        
 		        if (SequencerService.getSequence()[index] !== undefined) {
 		            
@@ -57,7 +61,6 @@ angular
 		            trigger = SequencerService.getSequence()[index];
 		            eventTime = trigger.time + loopIndex + time;
 
-		            // TODO: make this seperate where you just pass in the callback object
 		            for (eventKey in trigger.events) {
 		                if (trigger.events[eventKey].type === 'sample') {
 
@@ -68,16 +71,11 @@ angular
 		                }
 		            }
 
-		            // // NEW:
-		            // // INSTEAD of having next not/check beat etc, just have the unchanged scheduleSequence, then a prepped cropped version that loops if needed
-
 		            index++;
 		        } else {
-		            //console.log('next event:', eventTime);
-
 		            index = 0;
 		            loopIndex += measureLength;
-		            console.log('NEW MEASURE', measureLength);
+		            // console.log('NEW MEASURE', measureLength);
 		        }
 		    }
 
@@ -92,37 +90,9 @@ angular
 		}
 
 		function scheduleEvent(time, bufferSound) {
-		    //playSample( time, bufferSound );
-
-		    // console.log('buffer?', bufferSound);
 		    SampleService.playSample(time, bufferSound, context);
 		}
 
 		init();
-
-    	/**
-	     * Plays a sample from a buffer
-	     *
-	     * @param {Number} time
-     	 * @param {Object} asset - the buffer
-     	 * @param {Object} context 
-     	 *
-	     * @public
-	     */
-
-
-		// this.playSample = function(time, asset, context) {
-		//     var source = context.createBufferSource();
-		//     source.buffer = asset;
-
-		//     /** SAMPLE COMPRESSOR **/
-		//     sampleCompressor = context.createDynamicsCompressor();
-		//     sampleCompressor.ratio.value = 30;
-		//     sampleCompressor.threshold.value = 500;
-		//     source.connect(sampleCompressor);
-		//     sampleCompressor.connect(context.destination);
-
-		//     source.start(time);
-		// };
 
     }]);

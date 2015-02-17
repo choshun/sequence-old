@@ -11,7 +11,7 @@ angular
 				//nodeName: '=',
 				addTrigger: '&',
 				removeTrigger: '&',
-				createLayers: '&'
+				updateGrid: '&'
 			},
 			link: function(scope, element, attrs) {
 
@@ -71,13 +71,9 @@ angular
 						scope.addTrigger(eventItem);
 						
 						// for ui
-						scope.createLayers(eventItem);
+						scope.updateGrid(eventItem);
 					});
 				}
-
-				// attrs.$observe('nodeName', function() {
-				// 	console.log(' name: ', attrs.nodeName);
-				// });
 
 				init();
 			}

@@ -18,7 +18,7 @@ angular
 				var layer = this;
 
 				function init() {
-					bindAdd();
+					bindLayer();
 				}
 
 				/**
@@ -39,9 +39,11 @@ angular
 		         * @private
 		         */
 
-				function bindAdd() {
+				function bindLayer() {
 					element.on('click', function(event) {
 						setLayerProperties(); // TODO: not sure why some are properties, and some are private
+
+						var $target = $(event.target);
 
 						var offset = $(event.target).offset().left,
 							pageX = event.pageX;
@@ -53,6 +55,17 @@ angular
 							time: percentage * 100,
 							layer: attrs.layerIndex
 						};
+
+						// remove if clicked trigger
+						if ($target.is('trigger')) {
+							scope.removeTrigger({
+								time: $target.attr('trigger-time'),
+								layer: attrs.layerIndex,
+								index: $target.attr('trigger-index')
+							});
+
+							return false;
+						}
 
 						// for sequence to scheduler
 						scope.addTrigger(eventItem);

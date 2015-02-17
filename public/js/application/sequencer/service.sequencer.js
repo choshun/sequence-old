@@ -5,7 +5,7 @@
 
 angular
     .module('sequencer')
-    .service('SequencerService', [function() {
+    .service('SequencerService', ['$http', function($http) {
     	
     	var sequencerService = this;
 
@@ -78,10 +78,39 @@ angular
 	     * @public
 	     */
 
-		this.updateSequence = function(sequence) {
-			console.log('ordered?', order(sequence));
+		this.updateSequence = function(samples, time, layer) {
+			var sequenceUrl = '/sequence';
 
-		    sequencerService.sequence = order(sequence);
+			var sequenceItem = {
+                "time": time / 100, // turn back to seconds
+                "events": [
+                    {
+                        "layer": parseInt(layer),
+                        "type": samples[layer].type // sets type based on layer object
+                    }
+                ]
+            };
+
+            sequencerService.sequence.push(sequenceItem);
+
+			sequencerService.sequence = order(sequencerService.sequence);
+
+			// console.log(sequencerService.sequence);
+
+			// testPost = {time: 65, events: [{ layer: 10, type: 'banana' }]};
+
+			$http.post(sequenceUrl, sequenceItem).
+				success(function(data, status, headers, config) {
+			    
+				console.log('post success');
+			}).
+			error(function(data, status, headers, config) {
+			    
+				console.log('post error');
+			});
+
+			console.log('ordered?', sequencerService.sequence);
+		    
 		};
 
 		this.getSequence = function() {

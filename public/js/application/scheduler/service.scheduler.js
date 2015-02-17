@@ -39,7 +39,7 @@ angular
 			console.log('sequence?', SequencerService.getSequence());
 
 			setTimeout(function() {
-				// scheduler(); // TODO: NEEDS to wait till buffers are loaded
+				//scheduler(); // TODO: NEEDS to wait till buffers are loaded
 				console.log('sequence?', SequencerService.getSequence());
 			}, 200);
 		}

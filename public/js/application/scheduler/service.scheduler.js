@@ -54,8 +54,6 @@ angular
 	    	while (eventTime < context.currentTime + scheduleAheadTime) {
 		        
 		        if (SequencerService.getSequence()[index] !== undefined) {
-		            
-		        	console.log('index?', index);
 
 		        	//console.log('sceduler update?', SequencerService.getSequence());
 		            trigger = SequencerService.getSequence()[index];
@@ -80,7 +78,7 @@ angular
 		    }
 
 		    timerID = window.setTimeout(function() {
-		        scheduler(scheduleSequence);
+		        scheduler();
 		    }, lookahead);
 		}
 

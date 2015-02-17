@@ -5,7 +5,7 @@
 		ng-repeat="layer in sequencer.layers track by $index"
 		add-trigger="sequencer.addTrigger(time, layer)"
 		remove-trigger="sequencer.removeTrigger(time, layer, index)"
-		create-layers="sequencer.addLayerObject(time, layer)"
+		update-grid="sequencer.addLayerObject(time, layer)"
 		layer-index="{{$index}}"
 		layer
 	>

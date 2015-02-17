@@ -285,17 +285,17 @@ angular
             // TODO: kinda awkward, should just add to sequence then get it back
             // TODO: also needs to add the time key if it exists across multiple layers... maybe
 
-            sequencer.sequence.push({
-                "time": time / 100, // turn back to seconds
-                "events": [
-                    {
-                        "layer": parseInt(layer),
-                        "type": sequencer.samples[layer].type // sets type based on layer object
-                    }
-                ]
-            });
+            // sequencer.sequence.push({
+            //     "time": time / 100, // turn back to seconds
+            //     "events": [
+            //         {
+            //             "layer": parseInt(layer),
+            //             "type": sequencer.samples[layer].type // sets type based on layer object
+            //         }
+            //     ]
+            // });
 
-            SequencerService.updateSequence(sequencer.sequence);
+            SequencerService.updateSequence(sequencer.samples, time, layer);
             sequencer.sequence = SequencerService.getSequence();
         };
 

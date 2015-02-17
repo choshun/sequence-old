@@ -3,7 +3,8 @@
 <sequencer id="sequencer">
 	<layer 
 		ng-repeat="layer in sequencer.layers track by $index"
-		add-trigger="sequencer.addTrigger(time, layer)" 
+		add-trigger="sequencer.addTrigger(time, layer)"
+		remove-trigger="sequencer.removeTrigger(time, layer, index)"
 		create-layers="sequencer.addLayerObject(time, layer)"
 		layer-index="{{$index}}"
 		layer
@@ -13,6 +14,8 @@
 		<trigger
 			ng-repeat="trigger in layer.events track by $index"
 			style="left: {{trigger.time}}%;"
+			trigger-index="{{$index}}"
+			trigger-time="{{trigger.time}}"
 		>
 
 			<!-- {{trigger.time}} -->

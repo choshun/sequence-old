@@ -283,12 +283,13 @@ angular
 
         this.addTrigger = function(time, layer) {
             // TODO: kinda awkward, should just add to sequence then get it back
-            console.log('added!!!');
+            // TODO: also needs to add the time key if it exists across multiple layers... maybe
+
             sequencer.sequence.push({
                 "time": time / 100, // turn back to seconds
                 "events": [
                     {
-                        "layer": layer,
+                        "layer": parseInt(layer),
                         "type": sequencer.samples[layer].type // sets type based on layer object
                     }
                 ]
@@ -307,6 +308,8 @@ angular
 
         this.removeTrigger = function(timeString, layer, index) {
             // TODO: kinda awkward, should just add to sequence then get it back
+            // TODO: removing an event without removing the sequence object might need some work
+            // TODO: Should be calling two different services, one for ui, other for sequence
 
             var sequence = sequencer.sequence,
                 layers = sequencer.layers,
@@ -315,12 +318,24 @@ angular
             var i = 0,
                 n = sequence.length;
 
+            // ui remove
             layers[layer].events.splice(index, 1);
             $scope.$apply();
 
+            // console.log(layers);
+
             for (; i < n; i++) {
+
+                console.log(sequence[i]);
                 if (sequence[i].time === time) {
-                    sequencer.sequence[i].events.splice(0, 1); // TODO: could be buggy if it's the only event
+
+                    // console.log('layer', layer, 'losing battle', sequencer.sequence[i].events[0].layer, 'sequence item', sequencer.sequence[i].events);
+
+                    if (sequence[i].events[0].layer === parseInt(layer)) {
+                        console.log('yay?', sequencer.sequence[i]);
+                        // sequencer.sequence[i].events.splice(0, 1);
+                        sequence.splice(i, 1);
+                    }
                 }
             }
         };

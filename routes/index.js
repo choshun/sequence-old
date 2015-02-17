@@ -2,48 +2,52 @@ var express = require('express');
 var mongoose = require('mongoose');
 
 var router = express.Router();
-var Map = mongoose.model('Map');
+var Sequence = mongoose.model('Sequence');
 
 /* GET home page. */
 router.get('/', function(req, res) {
   	res.render('index', { title: 'Sequence' });
 });
 
-// GET all maps
-router.get('/maps', function(req, res, next) {
-  	Map.find(function(err, maps){
+// GET all sequences
+router.get('/sequence', function(req, res, next) {
+  	Sequence.find(function(err, sequence){
     	if(err){ return next(err); }
 
-    	res.json(maps);
+    	res.json(sequence);
   	});
 });
 
-// POST to maps to append one entry
-router.post('/maps', function(req, res, next) {
-  	var map = new Map(req.body);
+// POST to sequences to append one entry
+router.post('/sequence', function(req, res, next) {
+  	var sequence = new Sequence(req.body);
 
-  	map.save(function(err, map){
-    	if(err){ return next(err); }
-
-    	res.json(map);
+  	sequence.save(function(err, sequence) {
+    	if (err) { 
+            return next(err);
+        }
+        console.log(res.json(sequence));
+    	res.json(sequence);
   	});
 });
 
-// Definition for /maps param :map (id of map)
-router.param('map', function(req, res, next, id) {
-  	var query = Map.findById(id);
+// Definition for /sequences param :sequence (id of sequence)
+router.param('sequence', function(req, res, next, id) {
+  	var query = Sequence.findById(id);
 
-  	query.exec(function (err, map){
+  	query.exec(function (err, sequence){
 		if (err) { return next(err); }
-		if (!map) { return next(new Error("can't find map")); }
+		if (!sequence) { 
+            return next(new Error("can't find map")); 
+        }
 
-    	req.map = map;
+    	req.sequence = sequence;
     	return next();
   	});
 });
 
 // Get one map
-router.get('/maps/:map', function(req, res) {
+router.get('/sequences/:sequence', function(req, res) {
   	res.json(req.post);
 });
 

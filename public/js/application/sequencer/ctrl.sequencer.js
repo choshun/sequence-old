@@ -108,9 +108,7 @@
 //     }
 // }
 
-
-
-// TODO: !!! have remove trigger :D, make id, consolidate layer and sequence object.
+// !!!: TODO: get sequence from mongo :(
 
 angular
     .module('sequencer')
@@ -120,7 +118,7 @@ angular
         var sequencer = this;
 
         function init() {
-            createLayers(sequencer.samples);
+            updateGrid(sequencer.samples);
             createLayerObject(sequencer.sequence);
             sequencer.bufferLoad();
         }
@@ -128,7 +126,7 @@ angular
         // TODO: put in a service once I figure out scheduler
         // quick test of creating grid layers based on available samples, right now just drives ui
 
-        function createLayers(samples) {
+        function updateGrid(samples) {
             var type = '';
 
             var i = 0,
@@ -155,17 +153,11 @@ angular
             var theEvent = {},
                 layer = '';
 
-            // console.log('layer sequence', sequence, 'layer object', sequencer.layers);
-
             var i = 0,
                 n = sequence.length;
 
-            // loop through sequence object
             for (; i < n; i++) {
                 
-                console.log('is j a thing?', sequence[i].events.length);
-
-                // in each sequence object go through events and update view
                 for (var j = 0; j < sequence[i].events.length; j++) {
                     layer = sequence[i].events[j].layer;
 
@@ -323,101 +315,15 @@ angular
             var i = 0,
                 n = sequence.length;
 
-            console.log('layers- works', layers);
-            // works
             layers[layer].events.splice(index, 1);
             $scope.$apply();
 
-            // console.log('remove');
-            console.log('time?', time, 'index?', index);
-            // loop through sequence object
             for (; i < n; i++) {
-                console.log('times:', sequence[i].time, time);
                 if (sequence[i].time === time) {
-
-                    // console.log('remove', layer, 'index', index, 'time',  time);
-
-                    // console.log(sequence[i].events[0], '?!?!');
-
-                    // console.log('splice this?', sequence, 'i?', i);
-
-                    // 
-                    sequencer.sequence[i].events.splice(0, 1);
-
-
-
-                    // console.log('smaller?', sequencer.sequence);
-                    
-
-
-
-                    
-                    // for (var j = 0; j < sequence[i].events.length; j++) {
-                    //     layer = sequence[i].events[j].layer;
-
-                    //     if (sequencer.layers[layer].events.layer === layer) {
-                            
-                    //         // sequencer.layers[layer].events.layer
-                    //     }
-
-
-
-                    //     break;
-                    // }
-
-                    break;
+                    sequencer.sequence[i].events.splice(0, 1); // TODO: could be buggy if it's the only event
                 }
             }
-
-            // sequencer.sequence.push({
-            //     "time": time / 100, // turn back to seconds
-            //     "events": [
-            //         {
-            //             "layer": layer,
-            //             "type": sequencer.samples[layer].type // sets type based on layer object
-            //         }
-            //     ]
-            // });
-
-            // SequencerService.updateSequence(sequencer.sequence);
-            // sequencer.sequence = SequencerService.getSequence();
         };
-
-        /**
-         * Callback for bufferloader, sets bufferlist used to play samples
-         *
-         * @param {Number} time as percent of measure
-         * @param {Number} layer
-         *            
-         * @public
-         */
-        
-    	this.updateNodeName = function(name, index) {
-    		this.model.nodes[index].name = name;
-    		$scope.$apply();
-    		console.log(this.model);
-    	};
-
-    	// For testing directive firing when control model changes with $observe
-		// $timeout(angular.bind(this, function() {
-		// 	this.model.nodes[0].name = 'snyarf';
-		// }), 3000);
-		
-
-		this.getMaps = function() {
-			
-			// console.log('map service!');
-			// var mapPromise = MapService.getMaps();
-
-			// mapPromise.then(function (result) {
-	  //           this.maps = result.data;
-
-	  //           console.log('maps', this.maps);
-	  //       });
-		};
-
-		//this.getMaps();
-        
 
         init();
 

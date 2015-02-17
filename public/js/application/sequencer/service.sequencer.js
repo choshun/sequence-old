@@ -45,7 +45,12 @@ angular
 		            {
 		                "layer": 0,
 		                "type": "sample"
-		            },
+		            }
+		        ]
+		    },
+		    {
+		        "time": 0.5,
+		        "events": [
 		            {
 		                "layer": 1,
 		                "type": "sample"

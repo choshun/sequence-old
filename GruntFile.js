@@ -98,5 +98,5 @@ module.exports = function(grunt){
 	});
 
 	// grunt.registerTask('compile', ['npm-install', 'clean:vendor', 'bower:install', 'copy:fonts', 'compass', 'copy:images', 'copy:css', 'concat', 'copy:js', 'copy:fileUploadMap', 'karma:unit']);
-	grunt.registerTask('default', ['watch', 'sass:dist']);
+	grunt.registerTask('default', ['watch', 'sass:dist', 'uglify']);
 };

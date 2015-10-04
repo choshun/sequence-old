@@ -11,7 +11,7 @@ angular
 		var context = AudioContextService.getContext();
 
 		/**
-         * The time th while loop will look ahead to see what to schedule
+         * The time the while loop will look ahead to see what to schedule
          *
          * @type {Number} in s
          */

@@ -1,5 +1,5 @@
 /**
- * @fileOverview - bootstrapping of the best risk game ever!
+ * @fileOverview - sequencer app and router
  */
 
 angular.module('sequence', ['ui.router', 'utility', 'destinations', 'controllers', 'sequencer', 'scheduler'])
@@ -9,6 +9,15 @@ angular.module('sequence', ['ui.router', 'utility', 'destinations', 'controllers
 				url: '/home',
 				template: 'Hi there!'
 		    });
+
+		// For specific sequence
+		// $stateProvider
+		//     .state('sequencer', {
+		// 		url: '/sequences/{id}',
+		// 		templateUrl: '/js/application/sequencer/sequencer.html',
+		// 		controller: 'SequencerCtrl',
+		// 		controllerAs: 'sequencer'
+		//     });
 
 		$stateProvider
 		    .state('sequencer', {

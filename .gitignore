@@ -1,7 +1,9 @@
 node_modules/
+bower_components/
 back/
 public/*.map
 public/sourcemap.map
 public/js/dist
 public/js/vendor
 *.log
+*.map

@@ -1,7 +1,10 @@
 {
-  "version": 3,
-  "file": "sequencer.css",
-  "sources": ["..\/sass\/sequencer\/sequencer.scss"],
-  "names": [],
-  "mappings": "AAIA,KAAM,KAEL,OAAQ,KACR,WAAY,uDACZ,WAAY,uDACZ,WAAY,MAGb,KAAM,EAGL,MAbW,QAcT,KAAW,iDAGd,UACC,cAAe,eAEf,QAAS,MACT,OAAQ,OACR,cAAe,KACf,WAAY,KACZ,MAAO,KAGR,MACC,QAAS,KACT,SAAU,SACV,cAAe,gBAAhB,KAAK,YAGH,cAAe,MAIjB,QACC,WAAY,uDACZ,OAAQ,eACR,OAAO,KACP,SAAS,SACT,IAAK,EACL,MAAM"
+	"version": 3,
+	"file": "sequencer.css",
+	"sources": [
+		"../../sequencer.scss"
+	],
+	"sourcesContent": [],
+	"mappings": "AAIA,KAAM,KAEL,OAAQ,KACR,WAAY,uDACZ,WAAY,uDACZ,WAAY,MAGb,KAAM,EAGL,MAbW,QAcT,KAAW,iDAGd,UACC,cAAe,eAEf,QAAS,MACT,OAAQ,OACR,cAAe,KACf,WAAY,KACZ,MAAO,KAGR,MACC,QAAS,KACT,SAAU,SACV,cAAe,gBAEhB,AAAK,iBACH,cAAe,MAIjB,QACC,WAAY,uDACZ,OAAQ,eACR,OAAO,KACP,SAAS,SACT,IAAK,EACL,MAAM",
+	"names": []
 }

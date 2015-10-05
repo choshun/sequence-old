@@ -5,16 +5,14 @@
 
 angular
     .module('sequencer')
-    .service('SequencerService', ['$http', function($http) {
+    .service('SequencerService', ['$http', '$stateParams', function($http, $stateParams) {
     	
     	var sequencerService = this;
 
     	function order(sequence) {
-    		sequence.sort(function(a, b) {
+    		return sequence.sort(function(a, b) {
     			return a.time - b.time;
     		});
-
-    		return sequence;
     	}
 
     	this.sequence = [];
@@ -69,17 +67,16 @@ angular
     	];
 
     	/**
-	     * Plays a sample from a buffer
+	     * Adds to sequence object
 	     *
-	     * @param {Number} time
-     	 * @param {Object} asset - the buffer
-     	 * @param {Object} context 
+	     * @param {Array} samples - object with sample info
+     	 * @param {Number} time
+     	 * @param {Number} layer 
      	 *
 	     * @public
 	     */
 
 		this.updateSequence = function(samples, time, layer) {
-			var sequenceUrl = '/sequence';
 
 			var sequenceItem = {
                 "time": time / 100, // turn back to seconds
@@ -90,17 +87,27 @@ angular
                     }
                 ]
             };
-
+			
             sequencerService.sequence.push(sequenceItem);
-
 			sequencerService.sequence = order(sequencerService.sequence);
 
-			// console.log(sequencerService.sequence);
+			// var sequenceUrl = '/sequences/' + $stateParams.id + '/' + sequenceItem.time;
 
-			// testPost = {time: 65, events: [{ layer: 10, type: 'banana' }]};
+			// TODO: make this a private function, dthat's used by add and remove
+			// $http.put(sequenceUrl, sequenceItem).success(function(data, status, headers, config) {
+			    
+			// 	console.log('post success');
+			// }).
+			// error(function(data, status, headers, config) {
+			    
+			// 	console.log('post error');
+			// });
 
-			$http.post(sequenceUrl, sequenceItem).
-				success(function(data, status, headers, config) {
+			var sequenceUrl = '/sequence';
+
+			console.log('item?', sequenceItem);
+
+			$http.post(sequenceUrl, sequenceItem).success(function(data, status, headers, config) {
 			    
 				console.log('post success');
 			}).
@@ -109,11 +116,20 @@ angular
 				console.log('post error');
 			});
 
-			console.log('ordered?', sequencerService.sequence);
-		    
+			// console.log('ordered?', sequencerService.sequence);
 		};
 
 		this.getSequence = function() {
+			var sequenceUrl = '/sequences/' + $stateParams.id;
+
+			var promise = $http.get(sequenceUrl);
+
+			promise.then(function(result) { 
+				console.log('data?!?!?!?!?!', result.data);
+
+				return result.data; 
+			});
+
 			return sequencerService.sequence;
 		};
 

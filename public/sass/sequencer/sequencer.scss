@@ -6,13 +6,12 @@ html,
 body {
 	height: 100%;
 	background: -webkit-radial-gradient(top, rgba(45,178,211,1) 0%,rgba(167,255,220,1) 100%); 
-	background: -webkit-linear-gradient(top, rgba(45,178,211,1) 0%,rgba(167,255,220,1) 100%);
+	// background: -webkit-linear-gradient(top, rgba(45,178,211,1) 0%,rgba(167,255,220,1) 100%);
 	background: #000;
 }
 
 body, 
 a {
-
 	color: $dark-blue;
   	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }

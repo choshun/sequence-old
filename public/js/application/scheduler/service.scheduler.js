@@ -45,7 +45,7 @@ angular
 
 			setTimeout(function() {
 				// console.log('sequence?', SequencerService.getSequence());
-				
+				// WHERE PLAY IS
 				scheduler(); // TODO: NEEDS to wait till buffers are loaded, also need to pass in sequence from service
 				
 			}, 200);

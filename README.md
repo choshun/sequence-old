@@ -52,4 +52,4 @@ Directive for play/pause. Creates concept of measure, beat, tempo etc.
 The source of truth for the sequence model. Should have the only ng controller (as of now).
 
 ### To use
-Press space or toggle play checkbox.
+It should just be playing. Click on stuff.

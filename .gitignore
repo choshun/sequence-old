@@ -6,4 +6,6 @@ public/sourcemap.map
 public/js/dist
 public/js/vendor
 **/*.log
+*.log
 *.map
+.DS_Store

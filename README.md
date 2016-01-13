@@ -8,8 +8,7 @@
 4. $ npm install -g bower
 5. $ bower install
 6. $ npm start
-7. $ mongod
-8. Go to  http://localhost:3000
+8. Go to  http://localhost:4001
 
 example json of time signatures. Time is in fraction of 1 measure, so .25 at 60bpm is .25 secs
 
@@ -52,4 +51,4 @@ Directive for play/pause. Creates concept of measure, beat, tempo etc.
 The source of truth for the sequence model. Should have the only ng controller (as of now).
 
 ### To use
-It should just be playing. Click on stuff.
+It should just be playing. Click on stuff. You got this open source community that includes me and Bill.

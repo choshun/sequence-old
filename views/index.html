@@ -2,11 +2,11 @@
 <html>
 	<head>
 		<title><%= title %></title>
-		<link rel='stylesheet' href='/css/sequencer.css' />
+		<link rel='stylesheet' href='../public/css/sequencer.css' />
 	</head>
 	<body ng-app="sequence">
 		
-		<!-- <nav>
+		<nav>
 			<ul>
 				<li>
 					<a ui-sref=".home" class="btn btn-primary">Home!!</a>
@@ -15,7 +15,7 @@
 					<a ui-sref=".sequencer" class="btn btn-primary">Sequencer!</a>
 				</li>
 			</ul>
-		</nav> -->
+		</nav>
 <!-- 
 		<h1><%= title %></h1>
 		<p>Welcome to <%= title %></p> -->
@@ -23,7 +23,6 @@
 		<!-- where content is injected via sequence.js routing -->
 		<div ui-view></div>
 		
-		<script src="//localhost:35729/livereload.js"></script>
-		<script src="/js/dist/sequence.js"></script>
+		<script src="js/dist/sequence.js"></script>
 	</body>
 </html>

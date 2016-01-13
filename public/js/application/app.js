@@ -9,7 +9,6 @@ angular.module('sequence', ['ui.router', 'utility', 'destinations', 'controllers
 				url: '/home',
 				template: 'Hi there!'
 		    });
-
 		$stateProvider
 		    .state('sequencer', {
 				url: '/sequencer',

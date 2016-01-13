@@ -2,114 +2,6 @@
  * @fileOverview - sequencer model handling.
  */
 
-// The following iterative sequence is defined for the set of positive integers:
-
-// n → n/2 (n is even)
-// n → 3n + 1 (n is odd)
-
-// Using the rule above and starting with 13, we generate the following sequence:
-
-// 13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
-// var total = 0,
-//     totals = {
-//         "biggest": 0,
-//         "number": 0
-//     },
-//     doneTotals = [],
-//     // totals = [],
-//     number,
-//     orignumber = 2,
-//     limit = 10000;
-
-
-// // function order(doneTotals) {
-// //     return doneTotals.sort(function(a, b) {
-// //         return b - a;
-// //     });
-// // }
-
-// // function flatten(doneTotals) {
-// //     return doneTotals.filter(function(elem, pos) {
-// //         return doneTotals.indexOf(elem) === pos;
-// //     });
-// // } 
-
-// function getTotals(orignumber) {
-    
-
-//     if (orignumber === 1) {
-//         return false;
-//     }
-
-//     number = orignumber;
-//     total = 0;
-    
-
-
-//     while (number > 1) {
-//         // console.log(number);
-//         if (number in doneTotals) {
-//             // console.log('should break', number);
-//             // orignumber++;
-
-//             break;
-//         }
-
-//         //console.log('number', number);
-//         //console.log('odd?', isOdd);
-//         number = ((number % 2) === 1) ? (number * 3) + 1 : number / 2;
-
-//         // thenumber = 'ads' + number;
-
-//         // console.log('break?!');
-
-//         doneTotals.push(
-//             {
-//                 number: number
-//             }
-//         );
-//         // console.log('number?', number);
-
-//         total++;
-
-//         //console.log(number);
-//     }
-
-//     if (total > totals.biggest) {
-//         totals.biggest = total;
-//         totals.number = orignumber;
-//     }
-
-//     // console.log(orignumber, limit);
-//     if (orignumber < limit) {
-
-
-//         orignumber++;
-
-//         //doneTotals = flatten(doneTotals);
-
-//         getTotals(orignumber);
-//     }
-// }
-
-// // console.log(order(doneTotals));
-// // console.log(flatten(order(doneTotals)));
-
-// // trampoline(getTotals);
-
-// getTotals(orignumber);
-
-// console.log(totals);
-// //console.log(doneTotals);
-
-// function trampoline(fn) {
-//     while(fn && typeof fn === 'function') {
-//         fn = fn(orignumber);
-//     }
-// }
-
-// !!!: TODO: get sequence from mongo :(
-
 angular
     .module('sequencer')
     .controller('SequencerCtrl', 
@@ -118,6 +10,8 @@ angular
         var sequencer = this;
 
         function init() {
+            console.log('hey!');
+
             updateGrid(sequencer.samples);
             createLayerObject(sequencer.sequence);
             sequencer.bufferLoad();
@@ -190,6 +84,7 @@ angular
          */
 
         function loadCallback(buffers) {
+            console.log(buffers);
             BufferService.updateBuffers(buffers);
 
             // console.log('ctrl buffers', BufferService.getBuffers());
@@ -325,7 +220,6 @@ angular
             // console.log(layers);
 
             for (; i < n; i++) {
-
                 console.log(sequence[i]);
                 if (sequence[i].time === time) {
 

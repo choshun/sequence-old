@@ -1,4 +1,4 @@
-## sequence
+## sequence ⊂༼  〠‿〠 ༽つ
 
 ### Setup
 
@@ -51,4 +51,4 @@ Directive for play/pause. Creates concept of measure, beat, tempo etc.
 The source of truth for the sequence model. Should have the only ng controller (as of now).
 
 ### To use
-It should just be playing. Click on stuff. You got this open source community that includes me and Bill.
+It should just be playing. Click on stuff.
